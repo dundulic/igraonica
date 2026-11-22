@@ -15,7 +15,7 @@ Dok god neki placeholder nije popunjen, na stranici je istaknut žutom bojom, a 
 |---|---|
 | `controllerName` | Zorica Grujić |
 | `email` | rezervacije@igraonica-bubblefiesta.rs |
-| `retention` | 7 dana |
+| `retention` | godinu dana |
 | `hostingProvider` | Plus Hosting |
 | `emailProvider` | Plus Hosting (email na domenu sajta) |
 | `lastUpdated` | 22. novembar 2026. |
@@ -23,7 +23,7 @@ Dok god neki placeholder nije popunjen, na stranici je istaknut žutom bojom, a 
 Svi placeholderi u politici su popunjeni. Kada su hosting i email kod istog provajdera, generator ih prikazuje kao jednu stavku.
 Pri svakoj izmeni politike promeniti `lastUpdated` i pokrenuti `node tools/build.js`.
 
-**Rok od 7 dana obavezuje:** posle 7 dana od poslednjeg kontakta upit treba obrisati iz Google tabele, iz email sandučeta
+**Rok od godinu dana obavezuje:** posle godinu dana od poslednjeg kontakta upit treba obrisati iz Google tabele, iz email sandučeta
 rezervacije@igraonica-bubblefiesta.rs i iz WhatsApp/Viber razgovora (osim ako je duže čuvanje zakonska obaveza).
 
 Na stranici se, po dogovoru, ne prikazuju adresa, PIB ni matični broj – rukovalac je fizičko lice, a kontakt su ime, email i telefon 062 592 271.
