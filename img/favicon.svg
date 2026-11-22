@@ -1,1 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="26" cy="34" r="20" fill="#ff6fa5"/><circle cx="46" cy="20" r="12" fill="#2ec4c7"/><circle cx="50" cy="46" r="8" fill="#ffc93c"/><circle cx="19" cy="27" r="6" fill="#fff" opacity=".7"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a463c8"/>
+      <stop offset="1" stop-color="#4fbf9b"/>
+    </linearGradient>
+    <radialGradient id="bg" cx=".4" cy=".35" r=".75">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#efe6fa"/>
+    </radialGradient>
+  </defs>
+  <circle cx="60" cy="60" r="57" fill="url(#bg)" stroke="#e5d8f3" stroke-width="3"/>
+  <g opacity=".5">
+    <circle cx="30" cy="40" r="13" fill="#fde4ef"/>
+    <circle cx="92" cy="74" r="12" fill="#e0f4ee"/>
+    <circle cx="86" cy="34" r="9" fill="#ece0fa"/>
+    <circle cx="34" cy="86" r="10" fill="#e3effb"/>
+  </g>
+  <!-- mesec -->
+  <path d="M63 22 C38 26 28 52 38 74 C44 86 56 92 68 92 C52 84 44 66 47 50 C49 37 55 28 63 22 Z" fill="url(#g)"/>
+  <!-- zvezdice na koncu -->
+  <path d="M70 72 C72 56 76 42 80 30" fill="none" stroke="#a463c8" stroke-width="1.6"/>
+  <path d="M80 30 C82 26 86 24 89 22" fill="none" stroke="#a463c8" stroke-width="1.6"/>
+  <path d="M80 18 l2.4 4.9 5.4.8 -3.9 3.8 .9 5.4 -4.8-2.6 -4.8 2.6 .9-5.4 -3.9-3.8 5.4-.8z" fill="#b268d0"/>
+  <path d="M91 14 l2 4 4.4.7 -3.2 3.1 .8 4.4 -4-2.1 -4 2.1 .8-4.4 -3.2-3.1 4.4-.7z" fill="#b268d0"/>
+  <!-- iskrice -->
+  <path d="M30 56 l1.5 4 4 1.5 -4 1.5 -1.5 4 -1.5-4 -4-1.5 4-1.5z" fill="#a463c8"/>
+  <path d="M86 52 l1.2 3 3 1.2 -3 1.2 -1.2 3 -1.2-3 -3-1.2 3-1.2z" fill="#a463c8"/>
+  <!-- oblak -->
+  <g fill="#4fbf9b">
+    <circle cx="44" cy="86" r="10"/>
+    <circle cx="57" cy="79" r="12"/>
+    <circle cx="72" cy="82" r="11"/>
+    <circle cx="83" cy="89" r="8"/>
+    <rect x="36" y="86" width="52" height="11" rx="5.5"/>
+  </g>
+  <path d="M48 84 a8 8 0 0 1 8 -6 M64 80 a8 8 0 0 1 9 -1" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+</svg>

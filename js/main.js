@@ -23,10 +23,47 @@ menu.addEventListener('click', e => {
 const io = 'IntersectionObserver' in window && new IntersectionObserver(entries => {
   entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
 }, { threshold: .12 });
-document.querySelectorAll('.card, .pkg, .steps li, .place, .g, .faq details, .care, .custom, .occasions__list li')
+document.querySelectorAll('.occ__item, .offer__card, .pkg, .steps li, .place, .faq details, .custom, .video-sec__media, .video-sec__text')
   .forEach(el => { if (io) { el.classList.add('reveal'); io.observe(el); } });
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+/* Senka ispod zaglavlja pri skrolovanju */
+const header = document.querySelector('.header');
+addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10), { passive: true });
+
+/* Filter ponude */
+document.querySelectorAll('.filter').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.filter').forEach(b => b.classList.toggle('is-active', b === btn));
+  const f = btn.dataset.filter;
+  document.querySelectorAll('.offer__card').forEach(c =>
+    c.classList.toggle('is-hidden', f !== 'all' && c.dataset.cat !== f));
+}));
+
+/* Video */
+const video = document.getElementById('promoVideo');
+document.getElementById('videoPlay').addEventListener('click', () => {
+  video.controls = true; video.play();
+  video.parentElement.classList.add('playing');
+});
+
+/* Lightbox galerije */
+const lb = document.getElementById('lightbox');
+const lbImg = lb.querySelector('img');
+const shots = [...document.querySelectorAll('#gallery a')];
+let cur = 0;
+const show = i => { cur = (i + shots.length) % shots.length; lbImg.src = shots[cur].href; lbImg.alt = shots[cur].querySelector('img').alt; };
+shots.forEach((a, i) => a.addEventListener('click', e => { e.preventDefault(); show(i); lb.hidden = false; }));
+lb.querySelector('.lightbox__close').onclick = () => lb.hidden = true;
+lb.querySelector('.lightbox__prev').onclick = () => show(cur - 1);
+lb.querySelector('.lightbox__next').onclick = () => show(cur + 1);
+lb.addEventListener('click', e => { if (e.target === lb) lb.hidden = true; });
+addEventListener('keydown', e => {
+  if (lb.hidden) return;
+  if (e.key === 'Escape') lb.hidden = true;
+  if (e.key === 'ArrowLeft') show(cur - 1);
+  if (e.key === 'ArrowRight') show(cur + 1);
+});
 
 /* ===== Forma za rezervaciju ===== */
 const form = document.getElementById('bookingForm');

@@ -7,7 +7,8 @@ Statičan sajt (HTML + CSS + JS), bez WordPress-a i baze. Brz je, jeftin za host
 - `css/style.css` – izgled
 - `js/main.js` – meni, okvirna cena, forma za rezervaciju, WhatsApp/Viber dugmad
 - `google-apps-script/Code.gs` – prijem rezervacija u Google Sheets + email obaveštenje
-- `img/` – logo, favicon i fotografije
+- `img/foto/` – fotografije (optimizovane, max 1400px), `video/` – promo video (bez zvuka)
+- `img/logo.svg` – privremena vektorska verzija loga
 
 ## Rezervacije
 Forma šalje upit u **Google Sheets tabelu** i **na email** (npr. rezervacije@igraonica-bubblefiesta.rs, povezan sa telefonom).
@@ -18,8 +19,8 @@ Dok `sheetsEndpoint` nije podešen, dugme forme otvara **WhatsApp** sa već popu
 Na sajtu su uvek tu i dugmad WhatsApp / Viber / poziv, kao i plutajuće WhatsApp dugme.
 
 ## Šta treba zameniti
-- **Logo**: u `index.html` zameni `<svg class="logo__mark">…` sa `<img src="img/logo.png" alt="Bubble Fiesta">`.
-- **Galerija**: zameni `<div class="ph …">` sa `<img src="img/galerija-1.jpg" alt="…">` (fotografije sa Instagrama).
+- **Logo**: sačuvaj originalni logo kao `img/logo.png` i u `index.html` promeni `img/logo.svg` → `img/logo.png` (2 mesta: zaglavlje i futer).
+- **Galerija**: nove slike ubaci u `img/foto/` i dodaj `<a href="img/foto/x.jpg" class="g"><img src="img/foto/x.jpg" alt="…" loading="lazy"></a>` u `#gallery` (`g--tall` za uspravne, `g--wide` za široke).
 - **Cene**: u `index.html` (kartice paketa) i u `js/main.js` → `CONFIG.prices` / `CONFIG.facepainting`.
 
 ## Hosting
