@@ -64,7 +64,7 @@ Na sajtu su uvek tu i dugmad WhatsApp / Viber / poziv, kao i plutajuće WhatsApp
 Dugmad sa stranica gradova vode na `/?grad=Beograd#rezervacija` – grad se sam upiše u formu.
 
 ## Šta treba zameniti
-- **Logo**: originalni logo sačuvaj kao `img/logo.svg` (ili `.png` i promeni putanju u `index.html` i `templates/_header.html`, `templates/_footer.html`), zatim napravi nove ikonice (`img/icons/`, `favicon.ico`) i sliku za deljenje `img/og/`.
+- **Logo**: originalni logo je `img/logo.svg` (isti fajl je i `img/favicon.svg`). Ako se logo promeni, zameni oba fajla pa ponovo napravi ikonice (`img/icons/`, `favicon.ico`) i sliku za deljenje (`img/og/`).
 - **Galerija**: nova slika → `tools/optimize-images.py`, pa u `#gallery` u `index.html` dodaj `<a href="img/foto/ime-1200.webp" class="g"><picture>…</picture></a>` po uzoru na postojeće (`g--tall` za uspravne, `g--wide` za široke).
 - **Cene**: `index.html` (kartice paketa), `data/site.json` → `packages` (stranice gradova i JSON-LD) i `js/main.js` → `CONFIG.prices` / `CONFIG.facepainting`. Posle toga `node tools/build.js`.
 - **Adresa / radno vreme**: `data/site.json`, pa `node tools/build.js`.

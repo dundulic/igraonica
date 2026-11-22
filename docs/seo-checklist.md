@@ -52,7 +52,6 @@ Kod za praćenje dodaje Anđela; posle toga se vidi koliko ljudi dolazi i sa koj
 ## Šta još fali na sajtu (pošaljite Anđeli)
 - [ ] **Adresa** ili bar grad odakle polazite (može ostati skrivena na Google-u, ali je potrebna u podacima sajta).
 - [ ] **Radno vreme** / kada primate pozive i rezervacije.
-- [ ] **Logo u originalu** (PNG ili SVG, po mogućnosti providna pozadina) – sada je privremena verzija.
 - [ ] Da li stvarno dolazite u **sva mesta** sa stranice „Gde dolazimo"? Koja dodati, koja skloniti?
 - [ ] Email adresa za rezervacije i Google Sheets tabela (za formu na sajtu).
 - [ ] (Opciono) nove fotografije sa proslava – posebno iz Beograda, Novog Sada, Mladenovca i Smedereva.

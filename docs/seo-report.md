@@ -127,8 +127,6 @@ Also: the filter buttons are now `role="group"` with `aria-pressed`; all buttons
 | **Opening hours** | `data/site.json` → `openingHours.specification` (example in `_primerOpeningHours`) | Shown in Google; currently left out. |
 | Geo coordinates (optional) | `data/site.json` → `geo` | Helps local search. |
 | Email, Facebook page, legal name (optional) | `data/site.json` | Added to LocalBusiness automatically when filled in. |
-| **Real logo** | `img/logo.svg` (temporary vector version) | Replace it, then regenerate the icons and share image. |
-| **Share image** | `img/og/bubble-fiesta-pokretna-igraonica.jpg` | Uses a real photo, but the temporary logo; regenerate once the real logo arrives. |
 | **Town list** | `data/cities.json` → `otherTowns` | Confirm with the owner which towns she really covers, and add any missing. |
 | Google Sheets endpoint (existed before) | `js/main.js` → `CONFIG.sheetsEndpoint` | Until it is set, the form sends bookings via WhatsApp. |
 | `twitter:site` (optional) | `templates/_head.html`, `index.html` | Only if the business opens an X/Twitter account. |
@@ -169,3 +167,10 @@ The font families and CSS sizes themselves had not changed. The only exception w
 - **Checked on each:** CSS, all 3 fonts, header, logo, icons, WhatsApp button, mobile menu, every internal link (26–31 per page), and the booking form (directly on the home page; via the "Rezerviši" button on the other pages, landing on the form with the city filled in). Result: **36/36 pass**, no JavaScript errors.
 - **Font preload hints on `file://`:** Chrome blocks these 4 CORS requests there; the fonts themselves still load. On a real server the preloads work.
 - **Lighthouse (mobile) after the fix:** home 96 / 100 / 100 / 100, Beograd 98 / 100 / 100 / 100.
+
+---
+
+## Update: original logo
+The owner's original logo (`img/logo.svg`, 58 KB, 20 KB gzipped) replaced the temporary vector version. It is used in the header and footer on every page and as `img/favicon.svg`.
+`favicon.ico` (16/32/48), `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` (palette PNGs, 3–14 KB) and the 1200×630 share image were regenerated from it.
+The logo and share image are no longer placeholders.
