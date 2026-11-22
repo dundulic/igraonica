@@ -197,8 +197,8 @@ The logo and share image are no longer placeholders.
 ## Update: privacy policy (ZZPL / GDPR)
 - **New page `/politika-privatnosti`:**
   - Title "Politika privatnosti | Bubble Fiesta"; in the sitemap with priority 0.3.
-  - Sections: controller (natural person Zorica Grujic, email `[EMAIL]`, phone 062 592 271; no address or PIB/MB, as agreed), data collected, purpose, legal basis (ZZPL art. 12(1)(2), the equivalent of GDPR art. 6(1)(b); server logs under 12(1)(6)), retention `[ROK]`, recipients, rights and complaint to the Poverenik, cookies, security, and the last-updated date.
-  - Placeholders are highlighted on the page, and the build warns until they are filled in (see `docs/privatnost.md`).
+  - Sections: controller (natural person Zorica Grujić, email rezervacije@igraonica-bubblefiesta.rs, phone 062 592 271; no address or PIB/MB, as agreed), data collected, purpose, legal basis (ZZPL art. 12(1)(2), the equivalent of GDPR art. 6(1)(b); server logs under 12(1)(6)), retention 7 days, recipients, rights and complaint to the Poverenik, cookies, security, and the last-updated date.
+  - Placeholders are now filled in: controller Zorica Grujić, email rezervacije@igraonica-bubblefiesta.rs (clickable), retention 7 days, hosting and email both at Plus Hosting (shown as one entry).
 - **Footer:** the link is on every page (home and all generated pages).
 - **Form:** under the submit button: "Slanjem upita saglasni ste sa obradom podataka radi odgovora na upit. Više u politici privatnosti." with a link. The booking flow is unchanged, and the form test passes.
   - The optional required checkbox was **not** added. The legal basis is the pre-contract request, not consent, so a mandatory consent box would add friction without changing the legal position.

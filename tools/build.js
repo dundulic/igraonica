@@ -268,8 +268,16 @@ for (const c of cities) {
   const html = render('politika-privatnosti', {
     ...common, title: esc(title), description: esc(description), canonical: url,
     canonicalTag: `<link rel="canonical" href="${url}">`, jsonld: jsonldTag(ld),
-    controllerName: val(pv.controllerName), email: val(pv.email), privacyPhone: esc(pv.phoneDisplay),
-    retention: val(pv.retention), hostingProvider: val(pv.hostingProvider), emailProvider: val(pv.emailProvider),
+    controllerName: val(pv.controllerName),
+    email: /^\[/.test(pv.email) ? val(pv.email) : `<a href="mailto:${esc(pv.email)}">${esc(pv.email)}</a>`, privacyPhone: esc(pv.phoneDisplay),
+    retention: val(pv.retention),
+    // ako su hosting i email kod istog provajdera – jedna stavka umesto dve iste
+    providerItems: (() => {
+      const mail = /^\[/.test(pv.email) ? val(pv.email) : `<a href="mailto:${esc(pv.email)}">${esc(pv.email)}</a>`;
+      return pv.hostingProvider === pv.emailProvider
+        ? `<li><strong>${val(pv.hostingProvider)}</strong> – hosting sajta, tehnički podaci o poseti i email adresa ${mail}, na koju stižu upiti.</li>`
+        : `<li><strong>${val(pv.emailProvider)}</strong> – pružalac email usluge za adresu ${mail}, na koju stižu upiti.</li>\n      <li><strong>${val(pv.hostingProvider)}</strong> – hosting sajta i tehnički podaci o poseti.</li>`;
+    })(),
     lastUpdated: esc(pv.lastUpdated),
     waText: encodeURIComponent('Zdravo! Imam pitanje za Bubble Fiesta igraonicu 🎈')
   });

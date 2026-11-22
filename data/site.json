@@ -8,7 +8,7 @@
   "telephoneHref": "+38162592271",
   "phoneIntl": "38162592271",
   "phoneDisplay": "062 592 271",
-  "email": "",
+  "email": "rezervacije@igraonica-bubblefiesta.rs",
   "instagram": "https://www.instagram.com/bubble_fiestaa",
   "facebook": "",
   "logo": "/img/icons/icon-512.png",
@@ -126,12 +126,12 @@
   ],
   "privacy": {
     "_napomena": "Podaci za stranicu Politika privatnosti. Vrednosti u [ZAGRADAMA] su PLACEHOLDERI – zameni ih pravim podacima pa pokreni: node tools/build.js",
-    "controllerName": "Zorica Grujic",
-    "email": "[EMAIL]",
+    "controllerName": "Zorica Grujić",
+    "email": "rezervacije@igraonica-bubblefiesta.rs",
     "phoneDisplay": "062 592 271",
-    "retention": "[ROK, npr. 12 meseci]",
-    "hostingProvider": "[HOSTING PROVAJDER]",
-    "emailProvider": "[EMAIL SERVIS, npr. Gmail]",
+    "retention": "7 dana",
+    "hostingProvider": "Plus Hosting",
+    "emailProvider": "Plus Hosting",
     "lastUpdated": "22. novembar 2026."
   }
 }

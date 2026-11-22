@@ -53,11 +53,6 @@ Kod za praćenje dodaje Anđela; posle toga se vidi koliko ljudi dolazi i sa koj
 - [ ] **Adresa** ili bar grad odakle polazite (može ostati skrivena na Google-u, ali je potrebna u podacima sajta).
 - [ ] **Radno vreme** / kada primate pozive i rezervacije.
 - [ ] Da li stvarno dolazite u **sva mesta** sa stranice „Gde dolazimo"? Koja dodati, koja skloniti?
-- [ ] Email adresa za rezervacije i Google Sheets tabela (za formu na sajtu).
-- [ ] **Politika privatnosti** – podaci za stranicu (detalji u `docs/privatnost.md`):
-  - email adresa za upite (sada `[EMAIL]`),
-  - koliko dugo čuvate upite i poruke (sada `[ROK, npr. 12 meseci]`),
-  - kod koje firme je hosting sajta (sada `[HOSTING PROVAJDER]`),
-  - na kom servisu je email adresa (sada `[EMAIL SERVIS, npr. Gmail]`),
-  - provera da li je ime ispravno napisano: „Zorica Grujic" ili „Grujić".
+- [ ] Google Sheets tabela za formu na sajtu (email adresa je rezervacije@igraonica-bubblefiesta.rs).
+- [ ] **Politika privatnosti – brisanje posle 7 dana:** u politici piše da se upiti čuvaju 7 dana od poslednjeg kontakta. Jednom nedeljno obrišite stare upite iz Google tabele, iz sandučeta rezervacije@igraonica-bubblefiesta.rs i stare razgovore na WhatsApp-u/Viberu.
 - [ ] (Opciono) nove fotografije sa proslava – posebno iz Beograda, Novog Sada, Mladenovca, Smedereva, Niša i Aleksinca.
