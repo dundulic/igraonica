@@ -5,8 +5,8 @@
 
 <nav class="breadcrumb container" aria-label="Putanja">
   <ol>
-    <li><a href="/">Početna</a></li>
-    <li><a href="/gde-dolazimo">Gde dolazimo</a></li>
+    <li><a href="index.html">Početna</a></li>
+    <li><a href="gde-dolazimo.html">Gde dolazimo</a></li>
     <li aria-current="page">{{name}}</li>
   </ol>
 </nav>
@@ -20,7 +20,7 @@
       <h1><span class="tagline">{{tagline}}</span> Pokretna igraonica <span class="c-lilac">{{locative}}</span></h1>
       <p class="lead">{{lead}}</p>
       <div class="hero__cta">
-        <a href="/?grad={{nameUrl}}#rezervacija" class="btn btn--lilac">Rezerviši termin {{locative}}</a>
+        <a href="index.html?grad={{nameUrl}}#rezervacija" class="btn btn--lilac">Rezerviši termin {{locative}}</a>
         <a href="#paketi" class="btn btn--outline">Paketi i cene</a>
       </div>
       <ul class="hero__badges">
@@ -50,7 +50,7 @@
       <ul class="ticks">
         {{venuesList}}
       </ul>
-      <a href="/?grad={{nameUrl}}#rezervacija" class="btn btn--mint">Pošalji upit</a>
+      <a href="index.html?grad={{nameUrl}}#rezervacija" class="btn btn--mint">Pošalji upit</a>
     </aside>
   </div>
 </section>
@@ -95,7 +95,7 @@
     <h2>Rezervišite igraonicu {{locative}}</h2>
     <p>Popunite kratku formu – grad je već upisan – ili nam pišite direktno. Javljamo vam se u najkraćem roku da potvrdimo termin.</p>
     <div class="chat-btns">
-      <a class="btn btn--white" href="/?grad={{nameUrl}}#rezervacija">Popuni formu za rezervaciju</a>
+      <a class="btn btn--white" href="index.html?grad={{nameUrl}}#rezervacija">Popuni formu za rezervaciju</a>
       <a class="btn btn--wa" href="https://wa.me/{{phoneIntl}}?text={{waText}}" target="_blank" rel="noopener">WhatsApp</a>
       <a class="btn btn--viber" href="viber://chat?number=%2B{{phoneIntl}}">Viber</a>
       <a class="btn btn--white" href="tel:{{telephoneHref}}"><svg><use href="#i-phone"/></svg>Pozovi</a>

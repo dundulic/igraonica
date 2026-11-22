@@ -55,13 +55,13 @@ function picture(name, alt, sizes, { eager = false } = {}) {
   for (const w of [480, 800, 1200]) if (!fs.existsSync(path.join(ROOT, 'img/foto', `${name}-${w}.webp`)))
     errors.push(`Nedostaje WebP: img/foto/${name}-${w}.webp (pokreni python3 tools/optimize-images.py)`);
   const { w, h } = fs.existsSync(jpg) ? jpegSize(jpg) : { w: 1200, h: 900 };
-  const srcset = [480, 800, 1200].map(x => `/img/foto/${name}-${x}.webp ${x}w`).join(', ');
+  const srcset = [480, 800, 1200].map(x => `img/foto/${name}-${x}.webp ${x}w`).join(', ');
   const load = eager ? ' fetchpriority="high" decoding="async"' : ' loading="lazy" decoding="async"';
-  return `<picture><source type="image/webp" srcset="${srcset}" sizes="${sizes}"><img src="/img/foto/${name}.jpg" alt="${esc(alt)}" width="${w}" height="${h}"${load}></picture>`;
+  return `<picture><source type="image/webp" srcset="${srcset}" sizes="${sizes}"><img src="img/foto/${name}.jpg" alt="${esc(alt)}" width="${w}" height="${h}"${load}></picture>`;
 }
 function preloadImage(name, sizes) {
-  const srcset = [480, 800, 1200].map(x => `/img/foto/${name}-${x}.webp ${x}w`).join(', ');
-  return `<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="/img/foto/${name}-800.webp" imagesrcset="${srcset}" imagesizes="${sizes}">`;
+  const srcset = [480, 800, 1200].map(x => `img/foto/${name}-${x}.webp ${x}w`).join(', ');
+  return `<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="img/foto/${name}-800.webp" imagesrcset="${srcset}" imagesizes="${sizes}">`;
 }
 
 /** Mini šablon: {{> partial}} i {{promenljiva}}. Nepoznata promenljiva = greška. */
@@ -76,9 +76,9 @@ function render(tplName, vars) {
 const jsonldTag = obj => `  <script type="application/ld+json">\n${JSON.stringify(obj, null, 2)}\n  </script>`;
 
 /* ---------- linkovi ka gradovima ---------- */
-const cityLink = c => `<a href="/${c.slug}">Pokretna igraonica ${esc(c.locative)}</a>`;
-const footerCityLinks = cities.map(c => `<p><a href="/${c.slug}">Igraonica ${esc(c.locative)}</a></p>`).join('\n      ')
-  + `\n      <p><a href="/gde-dolazimo">Ostala mesta u Srbiji</a></p>`;
+const cityLink = c => `<a href="${c.slug}.html">Pokretna igraonica ${esc(c.locative)}</a>`;
+const footerCityLinks = cities.map(c => `<p><a href="${c.slug}.html">Igraonica ${esc(c.locative)}</a></p>`).join('\n      ')
+  + `\n      <p><a href="gde-dolazimo.html">Ostala mesta u Srbiji</a></p>`;
 
 /* ---------- strukturirani podaci ---------- */
 const BUSINESS_ID = `${BASE}/#business`;
@@ -166,6 +166,9 @@ const common = {
   year: String(new Date().getFullYear()),
   footerCityLinks,
   preloadImage: '',
+  baseFix: '',
+  fontPreloads: ['baloo-chettan-2-latin', 'raleway-latin', 'raleway-latin-ext', 'baloo-chettan-2-latin-ext']
+    .map(f => `  <link rel="preload" href="fonts/${f}.woff2" as="font" type="font/woff2" crossorigin>\n`).join(''),
   robots: 'index, follow, max-image-preview:large'
 };
 
@@ -181,7 +184,7 @@ function packagesHtml() {
           ${p.items.map(i => `<li>${i}</li>`).join('\n          ')}
         </ul>
         <p class="pkg__fp${p.featured ? ' pkg__fp--free' : ''}">${p.facepainting}</p>
-        <a href="/?grad={{nameUrl}}#rezervacija" class="btn btn--${p.color} btn--block">Rezerviši ${p.name.toLowerCase()}</a>
+        <a href="index.html?grad={{nameUrl}}#rezervacija" class="btn btn--${p.color} btn--block">Rezerviši ${p.name.toLowerCase()}</a>
       </article>`).join('\n      ');
 }
 
@@ -189,7 +192,7 @@ for (const c of cities) {
   const url = pageUrl(c.slug);
   const heroSizes = '(max-width: 900px) calc(100vw - 32px), 560px';
   const otherCityLinks = cities.filter(o => o !== c).map(cityLink).join(' · ')
-    + ' · <a href="/gde-dolazimo">ostala mesta u Srbiji</a>';
+    + ' · <a href="gde-dolazimo.html">ostala mesta u Srbiji</a>';
   const waText = encodeURIComponent(`Zdravo! Zanima me pokretna igraonica ${c.locative} 🎈`);
   const ld = { '@context': 'https://schema.org', '@graph': [
     business({ id: `${url}#business`, url, areaServed: { '@type': 'City', name: c.name, containedInPlace: { '@type': 'Country', name: 'Srbija' } } }),
@@ -234,7 +237,7 @@ for (const c of cities) {
     canonicalTag: `<link rel="canonical" href="${url}">`, jsonld: jsonldTag(ld),
     waText: encodeURIComponent('Zdravo! Zanima me da li dolazite u moje mesto 🎈'),
     cityCards: cities.map(c => `<li class="city-card">
-        <a href="/${c.slug}">
+        <a href="${c.slug}.html">
           ${picture(c.image, c.imageAlt, '(max-width: 600px) calc(100vw - 32px), (max-width: 1024px) 50vw, 280px')}
           <span class="city-card__body"><strong>Pokretna igraonica ${esc(c.locative)}</strong><span>${esc(c.tagline)}</span></span>
         </a>
@@ -255,8 +258,12 @@ for (const c of cities) {
     title: 'Stranica nije pronađena (404) | Bubble Fiesta',
     description: 'Tražena stranica ne postoji. Pogledajte pakete pokretne igraonice Bubble Fiesta ili rezervišite termin.',
     canonical: pageUrl(''), canonicalTag: '', robots: 'noindex, follow', jsonld: '',
+    fontPreloads: '',   // 404 se prikazuje i na dubokim adresama – preload bi tamo tražio pogrešnu putanju
+    // 404 se na serveru prikazuje i za duboke adrese (/a/b/c) – tada relativne putanje treba računati od korena sajta.
+    // Samo na pravom domenu; sa diska i lokalnog servera ostaju obične relativne putanje.
+    baseFix: `  <script>if(/(^|\\.)igraonica-bubblefiesta\\.rs$/.test(location.hostname)){var b=document.createElement('base');b.href='/';document.head.appendChild(b)}</script>\n`,
     waText: encodeURIComponent('Zdravo! Zanima me rezervacija Bubble Fiesta igraonice 🎈'),
-    otherCityLinks: cities.map(cityLink).join(' · ') + ' · <a href="/gde-dolazimo">ostala mesta</a>'
+    otherCityLinks: cities.map(cityLink).join(' · ') + ' · <a href="gde-dolazimo.html">ostala mesta</a>'
   });
   write('404.html', html);
 }
@@ -280,8 +287,8 @@ for (const c of cities) {
     faqPage(home, homeFaq)
   ] };
   inject('jsonld', '\n' + jsonldTag(ld) + '\n  ');
-  inject('city-links-packages', 'Dolazimo u celu Srbiju: ' + cities.map(cityLink).join(' · ') + ' · <a href="/gde-dolazimo">sva mesta gde dolazimo</a>');
-  inject('city-links-faq', 'Pogledajte stranice za ' + cities.map(c => `<a href="/${c.slug}">pokretnu igraonicu ${esc(c.locative)}</a>`).join(', ').replace(/, ([^,]*)$/, ' i $1') + ' ili <a href="/gde-dolazimo">listu svih mesta</a>.');
+  inject('city-links-packages', 'Dolazimo u celu Srbiju: ' + cities.map(cityLink).join(' · ') + ' · <a href="gde-dolazimo.html">sva mesta gde dolazimo</a>');
+  inject('city-links-faq', 'Pogledajte stranice za ' + cities.map(c => `<a href="${c.slug}.html">pokretnu igraonicu ${esc(c.locative)}</a>`).join(', ').replace(/, ([^,]*)$/, ' i $1') + ' ili <a href="gde-dolazimo.html">listu svih mesta</a>.');
   inject('city-links-footer', '\n      ' + footerCityLinks + '\n      ');
   write('index.html', html);
   const t = html.match(/<title>([^<]*)<\/title>/)[1], d = html.match(/<meta name="description" content="([^"]*)"/)[1];
@@ -330,19 +337,31 @@ for (const p of [...pages, { file: '404.html', noindex: true }]) {
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try { JSON.parse(m[1]); } catch (e) { errors.push(`${p.file}: neispravan JSON-LD – ${e.message}`); }
   }
-  // interni linkovi i resursi moraju postojati
-  for (const m of html.matchAll(/(?:href|src)="(\/?[^"#:?]*)(?:[?#][^"]*)?"/g)) {
-    let u = m[1];
-    if (!u || u.startsWith('//')) continue;
-    u = u.replace(/^\//, '');
-    if (u === '') continue;
-    const f = path.join(ROOT, u);
-    if (!fs.existsSync(f) && !fs.existsSync(f + '.html')) errors.push(`${p.file}: pokvaren link → /${u}`);
+  // interni linkovi i resursi: samo RELATIVNE putanje (rade i sa diska i sa servera) i fajl mora postojati
+  for (const m of html.matchAll(/\b(?:href|src|poster)="([^"]*)"/g)) {
+    const raw = m[1];
+    if (/^(https?:|mailto:|tel:|viber:|data:|#|\{)/.test(raw) || raw === '') continue;
+    if (raw.startsWith('/')) { errors.push(`${p.file}: putanja počinje sa "/" (ne radi sa diska): ${raw}`); continue; }
+    const u = raw.split(/[?#]/)[0];
+    if (u && !fs.existsSync(path.join(ROOT, u))) errors.push(`${p.file}: pokvaren link → ${raw}`);
   }
-  for (const m of html.matchAll(/srcset="([^"]+)"/g)) for (const part of m[1].split(',')) {
-    const u = part.trim().split(' ')[0].replace(/^\//, '');
-    if (!fs.existsSync(path.join(ROOT, u))) errors.push(`${p.file}: nedostaje slika ${u}`);
+  for (const m of html.matchAll(/\b(?:srcset|imagesrcset)="([^"]+)"/g)) for (const part of m[1].split(',')) {
+    const u = part.trim().split(' ')[0];
+    if (u.startsWith('/')) errors.push(`${p.file}: srcset putanja počinje sa "/": ${u}`);
+    else if (!fs.existsSync(path.join(ROOT, u))) errors.push(`${p.file}: nedostaje slika ${u}`);
   }
+}
+
+// CSS url(...) i manifest takođe moraju biti relativni i postojati
+for (const m of read('css/style.css').matchAll(/url\(\s*["']?([^"')]+)["']?\s*\)/g)) {
+  const u = m[1];
+  if (u.startsWith('data:')) continue;
+  if (u.startsWith('/')) errors.push(`css/style.css: url() počinje sa "/": ${u}`);
+  else if (!fs.existsSync(path.join(ROOT, 'css', u))) errors.push(`css/style.css: ne postoji fajl ${u}`);
+}
+for (const i of JSON.parse(read('site.webmanifest')).icons) {
+  if (i.src.startsWith('/')) errors.push(`site.webmanifest: putanja počinje sa "/": ${i.src}`);
+  else if (!fs.existsSync(path.join(ROOT, i.src))) errors.push(`site.webmanifest: ne postoji ${i.src}`);
 }
 
 // tekstovi gradova ne smeju biti kopija sa zamenjenim imenom grada

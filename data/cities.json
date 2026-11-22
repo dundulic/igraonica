@@ -20,7 +20,7 @@
       ],
       "venues": ["stanovi i kuće", "dvorišta i bašte", "restorani i sale za proslave", "vrtići i igraonice", "splavovi i letnje bašte"],
       "faq": [
-        { "q": "Dolazite li u sve beogradske opštine?", "a": "Da. Dolazimo u sve gradske opštine – od Zemuna, Novog Beograda i Čukarice do Zvezdare, Voždovca i Rakovice – ali i u prigradska naselja kao što su Obrenovac, Lazarevac, Grocka i <a href=\"/pokretna-igraonica-mladenovac\">Mladenovac</a>." },
+        { "q": "Dolazite li u sve beogradske opštine?", "a": "Da. Dolazimo u sve gradske opštine – od Zemuna, Novog Beograda i Čukarice do Zvezdare, Voždovca i Rakovice – ali i u prigradska naselja kao što su Obrenovac, Lazarevac, Grocka i <a href=\"pokretna-igraonica-mladenovac.html\">Mladenovac</a>." },
         { "q": "Može li dvorac na naduvavanje u stan?", "a": "Zavisi od veličine prostorije i visine plafona. U veći dnevni boravak obično staju Bubble House i Tiffany sto sa stolicama, a dvorac je bolje postaviti u salu, dvorište ili baštu. Pošaljite nam dimenzije prostora pa ćemo predložiti šta staje." },
         { "q": "Da li dolazite u restorane i sale za proslave?", "a": "Da, to je jedna od najčešćih postavki. Javite nam naziv restorana i deo sale koji je predviđen za decu, a mi donosimo i postavljamo igraonicu pre dolaska gostiju." },
         { "q": "Šta nam je potrebno na mestu proslave?", "a": "Ravna površina i obična utičnica u blizini, jer duvaljka drži dvorac i Bubble House naduvanim tokom igre. Sve ostalo – dvorce, Tiffany stolove i stolice, igračke i podlogu – donosimo mi." },
@@ -72,7 +72,7 @@
       "venues": ["dvorišta seoskih i gradskih kuća", "sale za proslave", "restorani", "vrtići", "vikendice"],
       "faq": [
         { "q": "Dolazite li u sela oko Mladenovca?", "a": "Da – u Kovačevac, Rajkovac, Velike Krsne, Međulužje, Senaju, Koraćicu i sva druga mesta u opštini. Napišite nam adresu u upitu." },
-        { "q": "Imamo veliko dvorište – šta je najbolje da uzmemo?", "a": "Za veliko dvorište preporučujemo <a href=\"/#paketi\">Paket 3</a>: oba bela dvorca (sa bazenom i sa toboganom), Bubble House, mašinu za slatkiše i facepainting gratis. Tako ima dovoljno mesta za veći broj dece." },
+        { "q": "Imamo veliko dvorište – šta je najbolje da uzmemo?", "a": "Za veliko dvorište preporučujemo <a href=\"index.html#paketi\">Paket 3</a>: oba bela dvorca (sa bazenom i sa toboganom), Bubble House, mašinu za slatkiše i facepainting gratis. Tako ima dovoljno mesta za veći broj dece." },
         { "q": "Šta treba da pripremimo na travi?", "a": "Što ravniju površinu bez kamenja i oštrih predmeta i utičnicu u blizini za duvaljku. Ako je trava mokra od kiše ili rose, javite nam pa ćemo zajedno naći najbolje mesto." },
         { "q": "Može li igraonica na krštenju u restoranu?", "a": "Može. Postavljamo je u deo sale koji vam restoran odredi i donosimo sve što je potrebno – vi samo javite koliko otprilike ima mesta." },
         { "q": "Koliko dugo traje iznajmljivanje?", "a": "Cene paketa su po satu (60€, 70€ ili 80€), a vi birate koliko sati vam treba. Okvirnu cenu za vaše trajanje vidite odmah u formi za rezervaciju." }

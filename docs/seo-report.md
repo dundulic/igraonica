@@ -134,3 +134,38 @@ Also: the filter buttons are now `role="group"` with `aria-pressed`; all buttons
 | `twitter:site` (optional) | `templates/_head.html`, `index.html` | Only if the business opens an X/Twitter account. |
 
 After editing `data/*.json`, run `node tools/build.js`. The build prints a warning for each placeholder still empty.
+
+---
+
+## Follow-up fix: fonts and relative paths
+
+### What was broken
+After the SEO pass, every page took its CSS, JS, fonts, images, favicon and logo from root paths (`/css/style.css`, `url(/fonts/…)`), and inner pages linked to clean URLs (`/gde-dolazimo`). On the live server, and on a local server started in the project folder, everything worked. But:
+
+| Opened as | Broken before the fix |
+|---|---|
+| `file://` (double-clicking the file) | **All pages:** the 6 font files (the CSS loaded them from `url(/fonts/…)`, i.e. the root of the disk). The text therefore fell back to a wider system font, which made the headings, menu, cards and buttons look different and bigger.<br>**City pages, /gde-dolazimo, 404:** additionally `css/style.css`, `js/main.js`, `img/logo.svg`, every photo and the icons, so the pages showed up unstyled. Internal links (`/gde-dolazimo`, `/pokretna-igraonica-…`, `/#paketi`) pointed to non-existent places on the disk. |
+| `python -m http.server` started one folder up (site under `/igraonica/`) | The same: fonts 404 on every page, and CSS, JS, logo and images 404 on all inner pages. |
+| `python -m http.server` started in the project folder | Worked. |
+| `site.webmanifest` | Icon paths `/img/icons/…`. |
+
+The font families and CSS sizes themselves had not changed. The only exception was the "1 sat" label in the package price circles (1 rem → 1.2 rem bold), which came from the contrast fix.
+
+### What was changed
+- **Paths:** all CSS/JS/font/image/icon/logo references and all internal links are now relative, in `index.html`, the templates, the generator, `data/cities.json`, `css/style.css` (`url(../fonts/…)`) and `site.webmanifest`. Internal links point to the `.html` files.
+- **Live site:** `.htaccess` sends `.html` → clean URL with a 301 (tested: `/index.html?grad=Novi%20Sad` → `/?grad=Novi%20Sad`, keeping the query string) and serves clean URLs from the `.html` files. Canonical tags, sitemap, Open Graph and JSON-LD keep the absolute `https://www.…` clean URLs.
+- **Trade-off:** each click on an internal link costs one 301 on the live site. This was the requested setup, so that the same files also work from disk.
+- **Fonts and sizes:** fonts load again everywhere. "1 sat" is back to the original 1 rem / 600. The hero tagline (now inside the H1) is set back to its original weight.
+  - Measured against the pre-SEO version (`f87f7c2`) at 1280 and 360 px: the font family, size, weight, line height, letter spacing and padding of 21 key elements are identical, and the hero block is pixel-identical.
+  - The only height differences come from the content added in the SEO pass: the city-links line under the packages, the links in one FAQ answer, and the "Gradovi" footer column.
+- **Known side effect:** "1 sat" is again white 16 px text on the coloured price circles, which falls below WCAG AA contrast (as it did originally). Lighthouse still shows 100 for accessibility because it doesn't check those cards (they fade in on scroll).
+- **404 on deep URLs (live server only):** Apache shows `404.html` for any missing address, e.g. `/a/b/c`, where relative paths would resolve wrongly. On the live domain only, a small inline script in `404.html` adds `<base href="/">`. The 404 page also skips the font preloads.
+  - Result: the deep 404 is fully styled. Two speculative requests (logo, `main.js`) still go to the wrong folder before `<base>` applies, which is harmless.
+- **Generator:** `tools/build.js` now fails the build on any path that starts with `/`, on links to files that don't exist (it no longer accepts clean URLs without a file), and on bad paths in the CSS `url()` and the manifest.
+
+### Verification
+- **Pages:** index (plus `#paketi` and `#galerija`; these are sections of the home page, not separate pages), the 4 city pages, /gde-dolazimo and 404.
+- **Modes:** `file://` and `python -m http.server`, at 360 and 1280 px.
+- **Checked on each:** CSS, all 3 fonts, header, logo, icons, WhatsApp button, mobile menu, every internal link (26–31 per page), and the booking form (directly on the home page; via the "Rezerviši" button on the other pages, landing on the form with the city filled in). Result: **36/36 pass**, no JavaScript errors.
+- **Font preload hints on `file://`:** Chrome blocks these 4 CORS requests there; the fonts themselves still load. On a real server the preloads work.
+- **Lighthouse (mobile) after the fix:** home 96 / 100 / 100 / 100, Beograd 98 / 100 / 100 / 100.

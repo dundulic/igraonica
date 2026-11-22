@@ -23,6 +23,12 @@ Stranice gradova, sitemap i SEO podatke pravi mali generator (`node tools/build.
 | `google-apps-script/Code.gs` | prijem rezervacija u Google Sheets + email obaveštenje |
 | `docs/seo-report.md`, `docs/seo-checklist.md` | SEO izveštaj i lista koraka za vlasnika |
 
+## Putanje – uvek relativne
+Sve putanje do CSS-a, JS-a, fontova, slika i drugih stranica su **relativne** (`css/style.css`, `pokretna-igraonica-beograd.html`, `index.html#paketi`),
+nikad sa `/` na početku. Tako sajt radi i kada se otvori direktno sa diska (dvoklik na `index.html`), i na lokalnom serveru
+(`python3 -m http.server`), i na hostingu. Na hostingu `.htaccess` linkove `stranica.html` preusmerava (301) na čiste adrese
+(`/stranica`), a canonical tagovi već pokazuju na čiste adrese. `node tools/build.js` javlja grešku ako negde ostane putanja sa `/`.
+
 ## Posle svake izmene
 ```bash
 node tools/build.js
