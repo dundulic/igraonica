@@ -54,4 +54,10 @@ Kod za praćenje dodaje Anđela; posle toga se vidi koliko ljudi dolazi i sa koj
 - [ ] **Radno vreme** / kada primate pozive i rezervacije.
 - [ ] Da li stvarno dolazite u **sva mesta** sa stranice „Gde dolazimo"? Koja dodati, koja skloniti?
 - [ ] Email adresa za rezervacije i Google Sheets tabela (za formu na sajtu).
-- [ ] (Opciono) nove fotografije sa proslava – posebno iz Beograda, Novog Sada, Mladenovca i Smedereva.
+- [ ] **Politika privatnosti** – podaci za stranicu (detalji u `docs/privatnost.md`):
+  - email adresa za upite (sada `[EMAIL]`),
+  - koliko dugo čuvate upite i poruke (sada `[ROK, npr. 12 meseci]`),
+  - kod koje firme je hosting sajta (sada `[HOSTING PROVAJDER]`),
+  - na kom servisu je email adresa (sada `[EMAIL SERVIS, npr. Gmail]`),
+  - provera da li je ime ispravno napisano: „Zorica Grujic" ili „Grujić".
+- [ ] (Opciono) nove fotografije sa proslava – posebno iz Beograda, Novog Sada, Mladenovca, Smedereva, Niša i Aleksinca.

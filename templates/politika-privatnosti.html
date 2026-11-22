@@ -1,0 +1,101 @@
+{{> head}}
+{{> header}}
+
+<main>
+
+<nav class="breadcrumb container" aria-label="Putanja">
+  <ol>
+    <li><a href="index.html">Početna</a></li>
+    <li aria-current="page">Politika privatnosti</li>
+  </ol>
+</nav>
+
+<section class="hero hero--city hero--slim">
+  <span class="deco deco--bubble3" aria-hidden="true"></span>
+  <div class="container">
+    <div class="hero__text hero__text--center">
+      <h1><span class="tagline">Kako postupamo sa vašim podacima</span> Politika <span class="c-lilac">privatnosti</span></h1>
+      <p class="lead">Podatke koje nam pošaljete koristimo samo da odgovorimo na vaš upit i dogovorimo proslavu. Ne koristimo kolačiće za praćenje, nemamo analitiku i ne prodajemo podatke.</p>
+      <p class="legal__updated">Poslednja izmena: {{lastUpdated}}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white legal">
+  <div class="container legal__inner">
+
+    <h2>1. Ko obrađuje vaše podatke</h2>
+    <p>Rukovalac podacima o ličnosti je fizičko lice <strong>{{controllerName}}</strong>, koje pod nazivom Bubble Fiesta pruža usluge pokretne igraonice.</p>
+    <ul>
+      <li>Email: {{email}}</li>
+      <li>Telefon: <a href="tel:{{telephoneHref}}">{{privacyPhone}}</a></li>
+    </ul>
+    <p>Na ove kontakte možete se obratiti za sva pitanja u vezi sa vašim podacima i za ostvarivanje prava iz tačke 7.</p>
+
+    <h2>2. Koje podatke prikupljamo</h2>
+    <h3>Kada pošaljete upit preko forme za rezervaciju</h3>
+    <ul>
+      <li>ime i prezime,</li>
+      <li>broj telefona,</li>
+      <li>datum i vreme početka proslave,</li>
+      <li>grad i adresu ili naziv mesta proslave (npr. restoran) i da li je prostor zatvoren ili na otvorenom,</li>
+      <li>vrstu slavlja (rođendan, krštenje, svadba…),</li>
+      <li>izabrani paket, trajanje, da li želite facepainting i okvirni broj dece,</li>
+      <li>napomenu koju sami upišete.</li>
+    </ul>
+    <p>Molimo vas da u napomenu ne upisujete podatke o zdravlju ili druge osetljive podatke o deci – nisu nam potrebni.</p>
+    <h3>Kada nam pišete preko WhatsApp-a ili Vibera ili nas pozovete</h3>
+    <p>Broj telefona, ime sa vašeg profila i sadržaj poruke ili razgovora.</p>
+    <h3>Tehnički podaci o poseti sajtu</h3>
+    <p>Server na kome se nalazi sajt automatski beleži osnovne tehničke podatke o pristupu (IP adresa, vreme pristupa, tražena stranica, tip pregledača) radi bezbednosti i ispravnog rada sajta. Te podatke ne koristimo za praćenje posetilaca niti za marketing.</p>
+
+    <h2>3. Zašto obrađujemo podatke (svrha)</h2>
+    <p>Isključivo da bismo odgovorili na vaš upit, proverili da li je termin slobodan, dogovorili detalje i cenu i realizovali dogovorenu proslavu. Ne šaljemo reklamne poruke i podatke ne koristimo ni u koju drugu svrhu.</p>
+
+    <h2>4. Pravni osnov</h2>
+    <p>Podatke iz upita obrađujemo zato što je to neophodno za <strong>preduzimanje radnji na vaš zahtev pre zaključenja ugovora</strong>, odnosno za izvršenje ugovora kada se termin dogovori – član 12. stav 1. tačka 2) Zakona o zaštiti podataka o ličnosti („Službeni glasnik RS", br. 87/2018), što odgovara članu 6(1)(b) Opšte uredbe o zaštiti podataka (GDPR).</p>
+    <p>Tehničke podatke o poseti obrađujemo na osnovu legitimnog interesa da sajt bude bezbedan i ispravan (član 12. stav 1. tačka 6) istog zakona).</p>
+    <p>Davanje podataka je dobrovoljno, ali bez imena, telefona, datuma i mesta proslave ne možemo da odgovorimo na upit.</p>
+
+    <h2>5. Koliko dugo čuvamo podatke</h2>
+    <p>Podatke iz upita i poruka čuvamo {{retention}} od poslednjeg kontakta sa vama, a zatim ih brišemo – osim ako je duže čuvanje obavezno po zakonu. Tehničke podatke o poseti čuva hosting provajder u skladu sa svojim pravilima.</p>
+
+    <h2>6. Ko još ima pristup podacima</h2>
+    <p>Podatke ne prodajemo i ne dajemo drugima. Koristimo sledeće usluge, koje podatke obrađuju u naše ime ili kroz koje nam ih vi šaljete:</p>
+    <ul>
+      <li><strong>Google (Google Sheets, Google Apps Script)</strong> – upit iz forme se upisuje u našu tabelu i stiže nam kao obaveštenje.</li>
+      <li><strong>{{emailProvider}}</strong> – pružalac email usluge za adresu {{email}}, na koju stižu upiti.</li>
+      <li><strong>{{hostingProvider}}</strong> – hosting sajta i tehnički podaci o poseti.</li>
+      <li><strong>WhatsApp (Meta) i Viber (Rakuten Viber)</strong> – samo ako sami izaberete da nam pišete preko njih. U zavisnosti od podešavanja sajta, forma za rezervaciju može da otvori WhatsApp sa već popunjenom porukom, koju vi šaljete. Poruke tada idu kroz sisteme tih aplikacija, prema njihovim pravilima privatnosti.</li>
+    </ul>
+    <p>Neki od ovih pružalaca usluga mogu da obrađuju podatke i van Srbije (npr. u Evropskoj uniji ili SAD), uz mere zaštite predviđene njihovim uslovima korišćenja.</p>
+
+    <h2>7. Vaša prava</h2>
+    <p>U svakom trenutku možete da tražite:</p>
+    <ul>
+      <li><strong>pristup</strong> – da saznate koje podatke o vama imamo,</li>
+      <li><strong>ispravku i dopunu</strong> netačnih ili nepotpunih podataka,</li>
+      <li><strong>brisanje</strong> podataka,</li>
+      <li><strong>ograničenje obrade</strong>,</li>
+      <li><strong>prenosivost</strong> – da vam podatke dostavimo u uobičajenom elektronskom obliku,</li>
+      <li>i da uložite <strong>prigovor</strong> na obradu.</li>
+    </ul>
+    <p>Zahtev pošaljite na {{email}} ili nas pozovite na {{privacyPhone}}. Odgovorićemo bez odlaganja, a najkasnije u roku od 30 dana.</p>
+    <p>Ako smatrate da se vaši podaci obrađuju suprotno zakonu, imate pravo da podnesete pritužbu <strong>Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti</strong>, Bulevar kralja Aleksandra 15, 11000 Beograd, <a href="https://www.poverenik.rs" target="_blank" rel="noopener">www.poverenik.rs</a>.</p>
+
+    <h2>8. Kolačići (cookies)</h2>
+    <p>Ovaj sajt <strong>ne koristi kolačiće</strong> ni slične tehnologije za praćenje – nema analitike, reklama ni društvenih dodataka, pa vas zato ne pitamo za saglasnost. Fontovi, slike i video učitavaju se sa našeg servera. Spoljni servisi (WhatsApp, Viber, Instagram) otvaraju se tek kada sami kliknete na njihov link, i tada važe njihova pravila privatnosti.</p>
+
+    <h2>9. Bezbednost</h2>
+    <p>Pristup tabeli sa upitima, email adresi i porukama ima samo rukovalac. Nalozi su zaštićeni lozinkom, a sajt se otvara preko šifrovane (HTTPS) veze.</p>
+
+    <h2>10. Izmene politike</h2>
+    <p>Ako promenimo način obrade podataka, ažuriraćemo ovu stranicu i datum na njenom vrhu. Poslednja izmena: {{lastUpdated}}</p>
+
+    <p class="legal__back"><a href="index.html#rezervacija" class="btn btn--lilac">Nazad na rezervaciju</a></p>
+  </div>
+</section>
+
+</main>
+
+{{> footer}}

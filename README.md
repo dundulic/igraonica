@@ -7,7 +7,7 @@ Stranice gradova, sitemap i SEO podatke pravi mali generator (`node tools/build.
 | Putanja | Šta je |
 |---|---|
 | `index.html` | početna (ponuda, paketi i cene, kako radimo, galerija, pitanja, rezervacija) – pisana ručno |
-| `pokretna-igraonica-*.html`, `gde-dolazimo.html`, `404.html`, `sitemap.xml` | **generisano** – ne menjati ručno, menja se `data/` ili `templates/` |
+| `pokretna-igraonica-*.html`, `gde-dolazimo.html`, `politika-privatnosti.html`, `404.html`, `sitemap.xml` | **generisano** – ne menjati ručno, menja se `data/` ili `templates/` |
 | `data/site.json` | podaci o firmi (telefon, adresa, radno vreme, paketi) – izvor za JSON-LD |
 | `data/cities.json` | tekstovi za stranice gradova + lista ostalih mesta za /gde-dolazimo |
 | `templates/` | šabloni (`city.html`, `gde-dolazimo.html`, `404.html`) i zajednički delovi (`_head`, `_header`, `_footer`, `_sprite`) |
@@ -22,6 +22,7 @@ Stranice gradova, sitemap i SEO podatke pravi mali generator (`node tools/build.
 | `robots.txt` | dozvole za pretraživače + link ka sitemap-u |
 | `google-apps-script/Code.gs` | prijem rezervacija u Google Sheets + email obaveštenje |
 | `docs/seo-report.md`, `docs/seo-checklist.md` | SEO izveštaj i lista koraka za vlasnika |
+| `docs/privatnost.md` | politika privatnosti: placeholderi koje treba popuniti, kolačići, Turnstile |
 
 ## Putanje – uvek relativne
 Sve putanje do CSS-a, JS-a, fontova, slika i drugih stranica su **relativne** (`css/style.css`, `pokretna-igraonica-beograd.html`, `index.html#paketi`),
@@ -36,6 +37,24 @@ node tools/build.js
 Generator pravi stranice i sitemap i proverava: dužinu i jedinstvenost naslova/opisa, tačno jedan H1, redosled naslova,
 alt + width/height na slikama, ispravan JSON-LD i pokvarene interne linkove. Ako nešto nije u redu – ispisuje grešku i ne završava.
 Upozorenja „PLACEHOLDER" znače da u `data/site.json` fali podatak (adresa, radno vreme).
+
+## Stranice gradova
+Trenutno postoji 6 stranica gradova (tekst za svaki je u `data/cities.json`):
+
+| Grad | Adresa na sajtu |
+|---|---|
+| Beograd | `/pokretna-igraonica-beograd` |
+| Novi Sad | `/pokretna-igraonica-novi-sad` |
+| Mladenovac | `/pokretna-igraonica-mladenovac` |
+| Smederevo | `/pokretna-igraonica-smederevo` |
+| Niš | `/pokretna-igraonica-nis` |
+| Aleksinac | `/pokretna-igraonica-aleksinac` |
+
+Ostala mesta su navedena samo kao tekst na `/gde-dolazimo` (`otherTowns` u `data/cities.json`).
+
+## Politika privatnosti
+`/politika-privatnosti` pravi generator iz `templates/politika-privatnosti.html` i `data/site.json` → `privacy`.
+Link je u futeru svake stranice i ispod dugmeta forme. Šta još treba popuniti: `docs/privatnost.md`.
 
 ## Kako dodati novi grad
 1. Ako treba nova fotografija: ubaci je u `img/foto/` sa opisnim imenom (mala slova, bez č/ć/š/ž/đ, crtice), pa pokreni

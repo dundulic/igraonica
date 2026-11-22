@@ -15,7 +15,6 @@
   "image": "/img/og/bubble-fiesta-pokretna-igraonica.jpg",
   "priceRange": "60–80 € po satu",
   "currenciesAccepted": "EUR, RSD",
-
   "address": {
     "_napomena": "PLACEHOLDER: adresa sedišta ili mesto odakle polazite. Google Business Profile i LocalBusiness je traže. Ako ne želite javnu adresu, upišite bar grad (addressLocality) i poštanski broj.",
     "streetAddress": "",
@@ -34,12 +33,39 @@
     "specification": []
   },
   "_primerOpeningHours": [
-    { "days": ["Mo", "Tu", "We", "Th", "Fr"], "opens": "10:00", "closes": "20:00" },
-    { "days": ["Sa", "Su"], "opens": "09:00", "closes": "22:00" }
+    {
+      "days": [
+        "Mo",
+        "Tu",
+        "We",
+        "Th",
+        "Fr"
+      ],
+      "opens": "10:00",
+      "closes": "20:00"
+    },
+    {
+      "days": [
+        "Sa",
+        "Su"
+      ],
+      "opens": "09:00",
+      "closes": "22:00"
+    }
   ],
-
-  "areaServedCities": ["Beograd", "Novi Sad", "Mladenovac", "Smederevo", "Kragujevac", "Niš", "Pančevo", "Požarevac", "Smederevska Palanka", "Šabac"],
-
+  "areaServedCities": [
+    "Beograd",
+    "Novi Sad",
+    "Mladenovac",
+    "Smederevo",
+    "Kragujevac",
+    "Niš",
+    "Aleksinac",
+    "Pančevo",
+    "Požarevac",
+    "Smederevska Palanka",
+    "Šabac"
+  ],
   "packages": [
     {
       "id": "1",
@@ -97,5 +123,15 @@
       "facepainting": "Facepainting: <b>GRATIS</b> 😊",
       "description": "Dva bela dvorca (sa bazenom i sa toboganom), Bubble House, mašina za slatkiše (gratis), Tiffany stolovi i stolice, puzzle podloga, edukativne igračke, bazen sa lopticama, ograda i dve žene koje paze na decu. Facepainting gratis."
     }
-  ]
+  ],
+  "privacy": {
+    "_napomena": "Podaci za stranicu Politika privatnosti. Vrednosti u [ZAGRADAMA] su PLACEHOLDERI – zameni ih pravim podacima pa pokreni: node tools/build.js",
+    "controllerName": "Zorica Grujic",
+    "email": "[EMAIL]",
+    "phoneDisplay": "062 592 271",
+    "retention": "[ROK, npr. 12 meseci]",
+    "hostingProvider": "[HOSTING PROVAJDER]",
+    "emailProvider": "[EMAIL SERVIS, npr. Gmail]",
+    "lastUpdated": "22. novembar 2026."
+  }
 }

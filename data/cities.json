@@ -18,13 +18,34 @@
         "Najviše smisla ima u salama i restoranima za proslave, gde deca često nemaju šta da rade dok odrasli sede za stolom. Dvorac na naduvavanje, bazen sa lopticama i Tiffany sto i stolice postavljamo u ćošak sale ili u baštu restorana, a dve žene iz našeg tima sve vreme paze na decu. Dolazimo i u vrtiće i privatne igraonice za proslave kraja godine.",
         "Ako slavite u stanu ili manjem prostoru, ne morate da uzmete ceo paket. Bubble House, facepainting i Tiffany kutak mogu da stanu i u veći dnevni boravak – pošaljite nam dimenzije prostorije i predložićemo postavku koja odgovara."
       ],
-      "venues": ["stanovi i kuće", "dvorišta i bašte", "restorani i sale za proslave", "vrtići i igraonice", "splavovi i letnje bašte"],
+      "venues": [
+        "stanovi i kuće",
+        "dvorišta i bašte",
+        "restorani i sale za proslave",
+        "vrtići i igraonice",
+        "splavovi i letnje bašte"
+      ],
       "faq": [
-        { "q": "Dolazite li u sve beogradske opštine?", "a": "Da. Dolazimo u sve gradske opštine – od Zemuna, Novog Beograda i Čukarice do Zvezdare, Voždovca i Rakovice – ali i u prigradska naselja kao što su Obrenovac, Lazarevac, Grocka i <a href=\"pokretna-igraonica-mladenovac.html\">Mladenovac</a>." },
-        { "q": "Može li dvorac na naduvavanje u stan?", "a": "Zavisi od veličine prostorije i visine plafona. U veći dnevni boravak obično staju Bubble House i Tiffany sto sa stolicama, a dvorac je bolje postaviti u salu, dvorište ili baštu. Pošaljite nam dimenzije prostora pa ćemo predložiti šta staje." },
-        { "q": "Da li dolazite u restorane i sale za proslave?", "a": "Da, to je jedna od najčešćih postavki. Javite nam naziv restorana i deo sale koji je predviđen za decu, a mi donosimo i postavljamo igraonicu pre dolaska gostiju." },
-        { "q": "Šta nam je potrebno na mestu proslave?", "a": "Ravna površina i obična utičnica u blizini, jer duvaljka drži dvorac i Bubble House naduvanim tokom igre. Sve ostalo – dvorce, Tiffany stolove i stolice, igračke i podlogu – donosimo mi." },
-        { "q": "Koliko ranije da rezervišemo termin za vikend?", "a": "Vikend termini u Beogradu se brzo popune, naročito u proleće i jesen, pa preporučujemo da pošaljete upit čim znate datum proslave." }
+        {
+          "q": "Dolazite li u sve beogradske opštine?",
+          "a": "Da. Dolazimo u sve gradske opštine – od Zemuna, Novog Beograda i Čukarice do Zvezdare, Voždovca i Rakovice – ali i u prigradska naselja kao što su Obrenovac, Lazarevac, Grocka i <a href=\"pokretna-igraonica-mladenovac.html\">Mladenovac</a>."
+        },
+        {
+          "q": "Može li dvorac na naduvavanje u stan?",
+          "a": "Zavisi od veličine prostorije i visine plafona. U veći dnevni boravak obično staju Bubble House i Tiffany sto sa stolicama, a dvorac je bolje postaviti u salu, dvorište ili baštu. Pošaljite nam dimenzije prostora pa ćemo predložiti šta staje."
+        },
+        {
+          "q": "Da li dolazite u restorane i sale za proslave?",
+          "a": "Da, to je jedna od najčešćih postavki. Javite nam naziv restorana i deo sale koji je predviđen za decu, a mi donosimo i postavljamo igraonicu pre dolaska gostiju."
+        },
+        {
+          "q": "Šta nam je potrebno na mestu proslave?",
+          "a": "Ravna površina i obična utičnica u blizini, jer duvaljka drži dvorac i Bubble House naduvanim tokom igre. Sve ostalo – dvorce, Tiffany stolove i stolice, igračke i podlogu – donosimo mi."
+        },
+        {
+          "q": "Koliko ranije da rezervišemo termin za vikend?",
+          "a": "Vikend termini u Beogradu se brzo popune, naročito u proleće i jesen, pa preporučujemo da pošaljete upit čim znate datum proslave."
+        }
       ]
     },
     {
@@ -44,12 +65,30 @@
         "Kada vreme nije za napolju, igraonicu postavljamo u sale za proslave, restorane i stanove u gradu – od Limana i Grbavice do Detelinare i Novog naselja. Bele dvorce i Tiffany stolove i stolice biramo tako da se uklope u dekoraciju, pa igraonica lepo izgleda i na fotografijama sa krštenja ili svadbe.",
         "Iznajmljivanje dvoraca kod nas uvek dolazi sa ljudima: dve žene iz našeg tima su sve vreme uz decu, a uz pakete dobijate i edukativne igračke, balon mašinu i facepainting po dogovoru."
       ],
-      "venues": ["salaši i vikendice", "kuće sa dvorištem", "sale i restorani", "stanovi", "vrtići"],
+      "venues": [
+        "salaši i vikendice",
+        "kuće sa dvorištem",
+        "sale i restorani",
+        "stanovi",
+        "vrtići"
+      ],
       "faq": [
-        { "q": "Dolazite li i u mesta oko Novog Sada?", "a": "Da, dolazimo u Petrovaradin, Sremsku Kamenicu, Veternik, Futog, Kać, Bukovac i druga mesta u okolini. U upitu nam samo napišite tačnu adresu." },
-        { "q": "Može li igraonica na salašu ili u vikendici na Fruškoj gori?", "a": "Može. Potrebna nam je što ravnija travnata ili popločana površina i struja u blizini za duvaljku koja drži dvorac naduvanim." },
-        { "q": "Šta ako pada kiša na proslavi u dvorištu?", "a": "Dvorci na naduvavanje se ne postavljaju na kiši, pa je dobro imati rezervni natkriveni ili zatvoreni prostor. Ako vremenska prognoza nije dobra, javite nam se ranije da zajedno dogovorimo gde ćemo postaviti igraonicu." },
-        { "q": "Možemo li iznajmiti samo Bubble House bez dvorca?", "a": "Možete. Ako nemate mesta za ceo paket, uzmite samo stavke koje vam odgovaraju – na primer Bubble House i facepainting – a cenu dogovaramo po vašoj meri." }
+        {
+          "q": "Dolazite li i u mesta oko Novog Sada?",
+          "a": "Da, dolazimo u Petrovaradin, Sremsku Kamenicu, Veternik, Futog, Kać, Bukovac i druga mesta u okolini. U upitu nam samo napišite tačnu adresu."
+        },
+        {
+          "q": "Može li igraonica na salašu ili u vikendici na Fruškoj gori?",
+          "a": "Može. Potrebna nam je što ravnija travnata ili popločana površina i struja u blizini za duvaljku koja drži dvorac naduvanim."
+        },
+        {
+          "q": "Šta ako pada kiša na proslavi u dvorištu?",
+          "a": "Dvorci na naduvavanje se ne postavljaju na kiši, pa je dobro imati rezervni natkriveni ili zatvoreni prostor. Ako vremenska prognoza nije dobra, javite nam se ranije da zajedno dogovorimo gde ćemo postaviti igraonicu."
+        },
+        {
+          "q": "Možemo li iznajmiti samo Bubble House bez dvorca?",
+          "a": "Možete. Ako nemate mesta za ceo paket, uzmite samo stavke koje vam odgovaraju – na primer Bubble House i facepainting – a cenu dogovaramo po vašoj meri."
+        }
       ]
     },
     {
@@ -69,13 +108,34 @@
         "Za krštenja i rođendane u salama i restoranima u Mladenovcu donosimo manju, urednu postavku: Bubble House, Tiffany sto i stolice sa slagalicama, bojankama i plastelinom i bazen sa lopticama. Sve je belo i čisto, pa se lako uklapa u dekoraciju sale.",
         "Dolazimo i u Kovačevac, Rajkovac, Velike Krsne, Međulužje, Senaju i druga okolna mesta. Animacija za decu kod nas znači da su dve žene iz tima sve vreme uz mališane, pa i najmlađi gosti mogu bezbedno da se igraju."
       ],
-      "venues": ["dvorišta seoskih i gradskih kuća", "sale za proslave", "restorani", "vrtići", "vikendice"],
+      "venues": [
+        "dvorišta seoskih i gradskih kuća",
+        "sale za proslave",
+        "restorani",
+        "vrtići",
+        "vikendice"
+      ],
       "faq": [
-        { "q": "Dolazite li u sela oko Mladenovca?", "a": "Da – u Kovačevac, Rajkovac, Velike Krsne, Međulužje, Senaju, Koraćicu i sva druga mesta u opštini. Napišite nam adresu u upitu." },
-        { "q": "Imamo veliko dvorište – šta je najbolje da uzmemo?", "a": "Za veliko dvorište preporučujemo <a href=\"index.html#paketi\">Paket 3</a>: oba bela dvorca (sa bazenom i sa toboganom), Bubble House, mašinu za slatkiše i facepainting gratis. Tako ima dovoljno mesta za veći broj dece." },
-        { "q": "Šta treba da pripremimo na travi?", "a": "Što ravniju površinu bez kamenja i oštrih predmeta i utičnicu u blizini za duvaljku. Ako je trava mokra od kiše ili rose, javite nam pa ćemo zajedno naći najbolje mesto." },
-        { "q": "Može li igraonica na krštenju u restoranu?", "a": "Može. Postavljamo je u deo sale koji vam restoran odredi i donosimo sve što je potrebno – vi samo javite koliko otprilike ima mesta." },
-        { "q": "Koliko dugo traje iznajmljivanje?", "a": "Cene paketa su po satu (60€, 70€ ili 80€), a vi birate koliko sati vam treba. Okvirnu cenu za vaše trajanje vidite odmah u formi za rezervaciju." }
+        {
+          "q": "Dolazite li u sela oko Mladenovca?",
+          "a": "Da – u Kovačevac, Rajkovac, Velike Krsne, Međulužje, Senaju, Koraćicu i sva druga mesta u opštini. Napišite nam adresu u upitu."
+        },
+        {
+          "q": "Imamo veliko dvorište – šta je najbolje da uzmemo?",
+          "a": "Za veliko dvorište preporučujemo <a href=\"index.html#paketi\">Paket 3</a>: oba bela dvorca (sa bazenom i sa toboganom), Bubble House, mašinu za slatkiše i facepainting gratis. Tako ima dovoljno mesta za veći broj dece."
+        },
+        {
+          "q": "Šta treba da pripremimo na travi?",
+          "a": "Što ravniju površinu bez kamenja i oštrih predmeta i utičnicu u blizini za duvaljku. Ako je trava mokra od kiše ili rose, javite nam pa ćemo zajedno naći najbolje mesto."
+        },
+        {
+          "q": "Može li igraonica na krštenju u restoranu?",
+          "a": "Može. Postavljamo je u deo sale koji vam restoran odredi i donosimo sve što je potrebno – vi samo javite koliko otprilike ima mesta."
+        },
+        {
+          "q": "Koliko dugo traje iznajmljivanje?",
+          "a": "Cene paketa su po satu (60€, 70€ ili 80€), a vi birate koliko sati vam treba. Okvirnu cenu za vaše trajanje vidite odmah u formi za rezervaciju."
+        }
       ]
     },
     {
@@ -95,23 +155,208 @@
         "Rado dolazimo i u vrtiće za proslave kraja godine, Dečiju nedelju ili rođendane više dece odjednom. Postavka je bezbedna i pregledna – uz pakete 2 i 3 dobijate ogradu, puzzle podlogu i bazen sa lopticama – a dve žene iz našeg tima vode računa o svakom detetu.",
         "Dolazimo i u Radinac, Vranovo, Lipe, Kolare, Mihajlovac, Udovice i druga mesta oko Smedereva. Uz igraonicu možete da dodate facepainting, koji je uz Paket 3 gratis."
       ],
-      "venues": ["restorani i sale", "kuće i dvorišta", "vrtići", "igraonice", "vikendice uz Dunav"],
+      "venues": [
+        "restorani i sale",
+        "kuće i dvorišta",
+        "vrtići",
+        "igraonice",
+        "vikendice uz Dunav"
+      ],
       "faq": [
-        { "q": "Dolazite li u sela oko Smedereva?", "a": "Da, dolazimo u Radinac, Vranovo, Lipe, Kolare, Mihajlovac, Udovice, Seonu i druga mesta u okolini. Tačnu adresu napišite u upitu za rezervaciju." },
-        { "q": "Može li igraonica u vrtiću za proslavu kraja godine?", "a": "Može. Javite nam koliko dece se očekuje i koliko prostora imate u sali ili dvorištu vrtića, pa ćemo predložiti postavku i trajanje." },
-        { "q": "Da li je dvorac bezbedan i za mlađu decu?", "a": "Dve žene iz našeg tima su sve vreme uz decu i paze da se mlađi i stariji ne igraju zajedno grubo. Uz pakete 2 i 3 dobijate i ogradu i puzzle podlogu za još bezbedniji prostor." },
-        { "q": "Koliko košta facepainting uz igraonicu?", "a": "Uz Paket 1 facepainting se doplaćuje 20€, uz Paket 2 10€, a uz Paket 3 je gratis." }
+        {
+          "q": "Dolazite li u sela oko Smedereva?",
+          "a": "Da, dolazimo u Radinac, Vranovo, Lipe, Kolare, Mihajlovac, Udovice, Seonu i druga mesta u okolini. Tačnu adresu napišite u upitu za rezervaciju."
+        },
+        {
+          "q": "Može li igraonica u vrtiću za proslavu kraja godine?",
+          "a": "Može. Javite nam koliko dece se očekuje i koliko prostora imate u sali ili dvorištu vrtića, pa ćemo predložiti postavku i trajanje."
+        },
+        {
+          "q": "Da li je dvorac bezbedan i za mlađu decu?",
+          "a": "Dve žene iz našeg tima su sve vreme uz decu i paze da se mlađi i stariji ne igraju zajedno grubo. Uz pakete 2 i 3 dobijate i ogradu i puzzle podlogu za još bezbedniji prostor."
+        },
+        {
+          "q": "Koliko košta facepainting uz igraonicu?",
+          "a": "Uz Paket 1 facepainting se doplaćuje 20€, uz Paket 2 10€, a uz Paket 3 je gratis."
+        }
+      ]
+    },
+    {
+      "slug": "pokretna-igraonica-nis",
+      "name": "Niš",
+      "locative": "u Nišu",
+      "genitive": "iz Niša",
+      "title": "Pokretna igraonica Niš | Dvorci za dečiji rođendan",
+      "description": "Pokretna igraonica u Nišu: beli dvorci na naduvavanje, Bubble House, facepainting i čuvanje dece za rođendane, krštenja i slave. Od 60€ po satu.",
+      "tagline": "Bubble Fiesta u Nišu i Niškoj Banji",
+      "lead": "Proslava u restoranu na Paliluli, kod kuće na Pantelej ili u dvorištu u Niškoj Banji – donosimo dvorce, Bubble House i animaciju za decu na vašu adresu u Nišu.",
+      "image": "dvorac-sa-toboganom-i-dekoracijom-od-balona",
+      "imageAlt": "Beli dvorac na naduvavanje sa toboganom i dekoracijom od balona",
+      "introHeading": "Od Medijane do Niške Banje – igraonica dolazi kod vas",
+      "intro": [
+        "Niš je grad velikih porodičnih slavlja – krštenja, rođendani i slave okupe mnogo gostiju, a deca su tu od prvog do poslednjeg minuta. Umesto da ih vodite u igraonicu na drugom kraju grada, mi dovozimo beli dvorac na naduvavanje, Bubble House i Tiffany kutak tamo gde slavite.",
+        "Igraonicu postavljamo u sale i restorane za proslave na Medijani, Paliluli, Pantelej i Crvenom Krstu, ali i u kuće i dvorišta. Za veće dvorište u Niškoj Banji, Gornjoj Toponici ili Popovcu odličan je Paket 3 sa oba dvorca, a za skromniji prostor dovoljni su Bubble House i sto sa slagalicama, bojankama i plastelinom.",
+        "Rado dolazimo i u niške vrtiće – za kraj školske godine, maskenbal ili rođendan cele grupe. Dok traje igra, dve žene iz našeg tima vode računa o svakom detetu, a roditelji i vaspitači mogu da se posvete gostima."
+      ],
+      "venues": [
+        "sale i restorani za slavlja",
+        "kuće i dvorišta",
+        "vikendice u Niškoj Banji",
+        "vrtići",
+        "letnje bašte"
+      ],
+      "faq": [
+        {
+          "q": "Dolazite li u Nišku Banju i prigradska naselja?",
+          "a": "Da. Pored gradskih opština Medijana, Palilula, Pantelej, Crveni Krst i Niška Banja, dolazimo i u Gornju Toponicu, Popovac, Donji Komren, Malču, Kamenicu i druga mesta oko Niša. Tačnu adresu napišite u upitu."
+        },
+        {
+          "q": "Može li igraonica na slavi kod kuće?",
+          "a": "Može. Ako je dvorište dovoljno ravno, dvorac postavljamo napolju, a u kući obično staju Bubble House i Tiffany sto sa stolicama. Pošaljite nam okvirne dimenzije prostora pa ćemo predložiti postavku."
+        },
+        {
+          "q": "Da li uz igraonicu dobijamo i animaciju za decu?",
+          "a": "Da. Uz svaki paket dolaze dve žene koje sve vreme paze na decu i vode igru u dvorcu i u kutku sa slagalicama, bojankama i plastelinom. Facepainting se doplaćuje uz pakete 1 i 2, a uz Paket 3 je gratis."
+        },
+        {
+          "q": "Koji paket da izaberemo za proslavu u restoranu?",
+          "a": "Ako je u restoranu predviđen manji prostor za decu, dobar izbor je Paket 1: dvorac sa bazenom, Bubble House i Tiffany kutak. Ako ima više mesta, Paket 2 donosi i tobogan, ogradu i puzzle podlogu. Pitajte restoran koliko prostora je namenjeno deci."
+        },
+        {
+          "q": "Dolazite li i u mesta oko Niša, na primer u Aleksinac?",
+          "a": "Da – pogledajte stranicu <a href=\"pokretna-igraonica-aleksinac.html\">pokretna igraonica u Aleksincu</a>. Dolazimo i u Prokuplje, Leskovac i druga mesta na jugu Srbije."
+        }
+      ]
+    },
+    {
+      "slug": "pokretna-igraonica-aleksinac",
+      "name": "Aleksinac",
+      "locative": "u Aleksincu",
+      "genitive": "iz Aleksinca",
+      "title": "Pokretna igraonica Aleksinac | Animacija za decu",
+      "description": "Pokretna igraonica u Aleksincu i okolnim selima: dvorac na naduvavanje, Bubble House i facepainting za dečije proslave u kući, sali ili dvorištu.",
+      "tagline": "Bubble Fiesta u Aleksincu, Žitkovcu i okolini",
+      "lead": "Rođendan u dvorištu, krštenje u sali ili proslava u vrtiću – dovozimo beli dvorac, Bubble House i kutak za igru na vašu adresu u Aleksincu i okolini.",
+      "image": "deca-na-dvorcu-sa-toboganom-na-rodjendanu",
+      "imageAlt": "Deca se igraju na belom dvorcu sa toboganom na rođendanu",
+      "introHeading": "Manji grad, jednako velika zabava",
+      "intro": [
+        "U Aleksincu se proslave najčešće prave kod kuće ili u nekoj od sala u gradu. Ne morate da tražite igraonicu niti da vozite decu do Niša: beli dvorac na naduvavanje sa bazenom ili toboganom, Bubble House i Tiffany sto sa stolicama postavljamo tamo gde slavite.",
+        "Kuće u Aleksincu i selima oko njega često imaju prostrana dvorišta – na travi lepo stoji i dvorac sa toboganom, a uz bazen sa lopticama i ogradu iz Paketa 2 dobijate pregledan i bezbedan prostor za igru. Dolazimo u Žitkovac, Prćilovicu, Moravac, Vakup, Subotinac, Aleksinački Rudnik, Lužane i druga okolna mesta.",
+        "Za krštenja i rođendane u salama pravimo manju i urednu postavku: Bubble House, kutak sa slagalicama, bojankama i plastelinom i balon mašinu koja pravi oblake mehurića. Dolazimo i u vrtiće – javite nam koliko dece se očekuje."
+      ],
+      "venues": [
+        "kuće sa prostranim dvorištem",
+        "sale za proslave",
+        "restorani",
+        "vrtići",
+        "seoska domaćinstva i vikendice"
+      ],
+      "faq": [
+        {
+          "q": "Da li dolazite i u sela u opštini Aleksinac?",
+          "a": "Da – u Žitkovac, Prćilovicu, Moravac, Vakup, Subotinac, Aleksinački Rudnik, Lužane, Tešicu, Katun i druga mesta. Dolazimo i u <a href=\"pokretna-igraonica-nis.html\">Niš</a> i njegovu okolinu."
+        },
+        {
+          "q": "Šta je potrebno za postavku u dvorištu?",
+          "a": "Dovoljno je ravno mesto bez kamenja i grana, nešto veće od samog dvorca, i utičnica do koje možemo da dovedemo produžni kabl za duvaljku. Ogradu i puzzle podlogu iz paketa 2 i 3 donosimo mi."
+        },
+        {
+          "q": "Možemo li da uzmemo samo dvorac sa toboganom?",
+          "a": "Možete. Ako vam ne treba ceo paket, izaberite samo ono što želite – na primer samo dvorac sa toboganom ili samo Bubble House – a cenu za takvu postavku dogovaramo pre proslave."
+        },
+        {
+          "q": "Da li dolazite i na slave i punoletstva?",
+          "a": "Da – na sve vrste veselja: rođendane, krštenja, slave, punoletstva, svadbe i druge porodične proslave. Igraonica je tu da deca imaju svoj kutak dok odrasli slave."
+        },
+        {
+          "q": "Kako da rezervišemo termin u Aleksincu?",
+          "a": "Popunite formu za rezervaciju na sajtu – grad je već upisan – ili nam pišite na WhatsApp ili Viber, odnosno pozovite 062 592 271. Termin je potvrđen kada vam se javimo."
+        }
       ]
     }
   ],
-
   "_napomenaOstali": "Mesta koja se navode SAMO kao tekst na stranici /gde-dolazimo (bez posebnih stranica). Proveri i dopuni listu.",
   "otherTowns": [
-    { "region": "Beograd i okolina", "towns": ["Obrenovac", "Lazarevac", "Sopot", "Barajevo", "Grocka", "Surčin", "Ripanj", "Ralja"] },
-    { "region": "Podunavlje i Braničevo", "towns": ["Smederevska Palanka", "Velika Plana", "Požarevac", "Kostolac", "Kovin", "Žabari"] },
-    { "region": "Vojvodina", "towns": ["Pančevo", "Zrenjanin", "Subotica", "Sombor", "Kikinda", "Vršac", "Ruma", "Sremska Mitrovica", "Inđija", "Stara Pazova", "Bačka Palanka", "Vrbas", "Bečej", "Temerin"] },
-    { "region": "Šumadija i Pomoravlje", "towns": ["Kragujevac", "Aranđelovac", "Topola", "Jagodina", "Ćuprija", "Paraćin", "Svilajnac", "Despotovac"] },
-    { "region": "Zapadna Srbija", "towns": ["Šabac", "Valjevo", "Loznica", "Čačak", "Kraljevo", "Užice", "Gornji Milanovac"] },
-    { "region": "Južna i istočna Srbija", "towns": ["Niš", "Kruševac", "Leskovac", "Vranje", "Zaječar", "Bor", "Pirot", "Prokuplje"] }
+    {
+      "region": "Beograd i okolina",
+      "towns": [
+        "Obrenovac",
+        "Lazarevac",
+        "Sopot",
+        "Barajevo",
+        "Grocka",
+        "Surčin",
+        "Ripanj",
+        "Ralja"
+      ]
+    },
+    {
+      "region": "Podunavlje i Braničevo",
+      "towns": [
+        "Smederevska Palanka",
+        "Velika Plana",
+        "Požarevac",
+        "Kostolac",
+        "Kovin",
+        "Žabari"
+      ]
+    },
+    {
+      "region": "Vojvodina",
+      "towns": [
+        "Pančevo",
+        "Zrenjanin",
+        "Subotica",
+        "Sombor",
+        "Kikinda",
+        "Vršac",
+        "Ruma",
+        "Sremska Mitrovica",
+        "Inđija",
+        "Stara Pazova",
+        "Bačka Palanka",
+        "Vrbas",
+        "Bečej",
+        "Temerin"
+      ]
+    },
+    {
+      "region": "Šumadija i Pomoravlje",
+      "towns": [
+        "Kragujevac",
+        "Aranđelovac",
+        "Topola",
+        "Jagodina",
+        "Ćuprija",
+        "Paraćin",
+        "Svilajnac",
+        "Despotovac"
+      ]
+    },
+    {
+      "region": "Zapadna Srbija",
+      "towns": [
+        "Šabac",
+        "Valjevo",
+        "Loznica",
+        "Čačak",
+        "Kraljevo",
+        "Užice",
+        "Gornji Milanovac"
+      ]
+    },
+    {
+      "region": "Južna i istočna Srbija",
+      "towns": [
+        "Kruševac",
+        "Leskovac",
+        "Vranje",
+        "Zaječar",
+        "Bor",
+        "Pirot",
+        "Prokuplje"
+      ]
+    }
   ]
 }

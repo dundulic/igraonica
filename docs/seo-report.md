@@ -174,3 +174,35 @@ The font families and CSS sizes themselves had not changed. The only exception w
 The owner's original logo (`img/logo.svg`, 58 KB, 20 KB gzipped) replaced the temporary vector version. It is used in the header and footer on every page and as `img/favicon.svg`.
 `favicon.ico` (16/32/48), `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` (palette PNGs, 3–14 KB) and the 1200×630 share image were regenerated from it.
 The logo and share image are no longer placeholders.
+
+---
+
+## Update: Niš and Aleksinac city pages
+- **New pages:** `/pokretna-igraonica-nis` and `/pokretna-igraonica-aleksinac`, generated from the existing template with their own text (3 paragraphs, venue list, 5-question FAQ, the 3 packages, booking section).
+  - Niš: title "Pokretna igraonica Niš | Dvorci za dečiji rođendan" (50 chars), description 144 chars, H1 "Pokretna igraonica u Nišu".
+  - Aleksinac: title "Pokretna igraonica Aleksinac | Animacija za decu" (48 chars), description 145 chars, H1 "Pokretna igraonica u Aleksincu".
+  - Both have their own LocalBusiness JSON-LD with `areaServed` = that City, plus BreadcrumbList and FAQPage.
+- **Uniqueness:** any two of the 6 city texts share at most 5% of their 5-word phrases (Niš 378 words, Aleksinac 341). The build fails above 25%.
+- **Where they appear:** footer "Gradovi" column, home "Dolazimo u celu Srbiju" line and the FAQ answer, the "Dolazimo i u druge gradove" block on every city page, the 404 page, city cards on `/gde-dolazimo`, `sitemap.xml`, and the home JSON-LD `areaServed`. Niš and Aleksinac also link to each other in their FAQs.
+  - Niš was removed from the plain-text town list on `/gde-dolazimo`, since it now has its own page.
+- **Form pre-fill:** the booking buttons open `index.html?grad=Niš` / `?grad=Aleksinac#rezervacija`, which fills in the city. Tested with "š" from disk, from a local server, and through the Apache redirect.
+- **No other changes:** existing pages were compared before and after. The only differences are the added links to Niš/Aleksinac and the two cities in JSON-LD; no links were removed and no other text changed.
+- **Checks:**
+  - generator, link and path checker: pass, only relative paths;
+  - HTML validation: 10 files valid;
+  - Schema.org vocabulary: 293 nodes, 0 errors;
+  - `file://` and `http.server` at 360 and 1280 px: **48/48 pass**.
+- **Lighthouse (mobile):** Niš 97 / 100 / 100 / 100, Aleksinac 98 / 100 / 100 / 100.
+
+## Update: privacy policy (ZZPL / GDPR)
+- **New page `/politika-privatnosti`:**
+  - Title "Politika privatnosti | Bubble Fiesta"; in the sitemap with priority 0.3.
+  - Sections: controller (natural person Zorica Grujic, email `[EMAIL]`, phone 062 592 271; no address or PIB/MB, as agreed), data collected, purpose, legal basis (ZZPL art. 12(1)(2), the equivalent of GDPR art. 6(1)(b); server logs under 12(1)(6)), retention `[ROK]`, recipients, rights and complaint to the Poverenik, cookies, security, and the last-updated date.
+  - Placeholders are highlighted on the page, and the build warns until they are filled in (see `docs/privatnost.md`).
+- **Footer:** the link is on every page (home and all generated pages).
+- **Form:** under the submit button: "Slanjem upita saglasni ste sa obradom podataka radi odgovora na upit. Više u politici privatnosti." with a link. The booking flow is unchanged, and the form test passes.
+  - The optional required checkbox was **not** added. The legal basis is the pre-contract request, not consent, so a mandatory consent box would add friction without changing the legal position.
+- **WhatsApp/Viber:** a one-line notice below the WhatsApp/Viber buttons on the home page, the city pages and `/gde-dolazimo`.
+- **Cookies:** checked in a clean browser on every page: 0 cookies, no localStorage/sessionStorage, no third-party requests on load, no analytics. No cookie banner is needed.
+- **Cloudflare Turnstile** is not used on the site, so the policy doesn't name it. Ready-to-paste text for when it's enabled is in `docs/privatnost.md`.
+- **Lighthouse (mobile):** policy page 98 / 100 / 100 / 100; home unchanged at 96 / 100 / 100 / 100.

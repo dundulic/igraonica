@@ -251,6 +251,32 @@ for (const c of cities) {
   pages.push({ file: 'gde-dolazimo.html', url, priority: '0.6', title, description });
 }
 
+/* ---------- 2b. /politika-privatnosti ---------- */
+{
+  const pv = site.privacy;
+  const url = pageUrl('politika-privatnosti');
+  const title = 'Politika privatnosti | Bubble Fiesta';
+  const description = 'Kako pokretna igraonica Bubble Fiesta obrađuje podatke iz upita za rezervaciju: svrha, rok čuvanja, ko ima pristup i vaša prava. Bez kolačića.';
+  // vrednosti u [ZAGRADAMA] su placeholderi – na stranici se ističu, a build upozorava dok se ne popune
+  const val = v => /^\[.*\]$/.test(v)
+    ? (warnings.push(`PLACEHOLDER: politika privatnosti – ${v} (data/site.json → privacy)`), `<mark class="ph">${esc(v)}</mark>`)
+    : esc(v);
+  const ld = { '@context': 'https://schema.org', '@graph': [
+    breadcrumbs([['Početna', pageUrl('')], ['Politika privatnosti', url]]),
+    { '@type': 'WebPage', '@id': `${url}#webpage`, url, name: title, description, inLanguage: 'sr', about: { '@id': BUSINESS_ID } }
+  ] };
+  const html = render('politika-privatnosti', {
+    ...common, title: esc(title), description: esc(description), canonical: url,
+    canonicalTag: `<link rel="canonical" href="${url}">`, jsonld: jsonldTag(ld),
+    controllerName: val(pv.controllerName), email: val(pv.email), privacyPhone: esc(pv.phoneDisplay),
+    retention: val(pv.retention), hostingProvider: val(pv.hostingProvider), emailProvider: val(pv.emailProvider),
+    lastUpdated: esc(pv.lastUpdated),
+    waText: encodeURIComponent('Zdravo! Imam pitanje za Bubble Fiesta igraonicu 🎈')
+  });
+  write('politika-privatnosti.html', html);
+  pages.push({ file: 'politika-privatnosti.html', url, priority: '0.3', title, description });
+}
+
 /* ---------- 3. 404 ---------- */
 {
   const html = render('404', {
