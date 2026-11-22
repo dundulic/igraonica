@@ -26,7 +26,8 @@ const io = 'IntersectionObserver' in window && new IntersectionObserver(entries 
 document.querySelectorAll('.occ__item, .offer__card, .pkg, .steps li, .place, .faq details, .custom, .video-sec__media, .video-sec__text')
   .forEach(el => { if (io) { el.classList.add('reveal'); io.observe(el); } });
 
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 /* Senka ispod zaglavlja pri skrolovanju */
 const header = document.querySelector('.header');
@@ -34,7 +35,10 @@ addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 1
 
 /* Filter ponude */
 document.querySelectorAll('.filter').forEach(btn => btn.addEventListener('click', () => {
-  document.querySelectorAll('.filter').forEach(b => b.classList.toggle('is-active', b === btn));
+  document.querySelectorAll('.filter').forEach(b => {
+    b.classList.toggle('is-active', b === btn);
+    b.setAttribute('aria-pressed', b === btn);
+  });
   const f = btn.dataset.filter;
   document.querySelectorAll('.offer__card').forEach(c =>
     c.classList.toggle('is-hidden', f !== 'all' && c.dataset.cat !== f));
@@ -42,13 +46,14 @@ document.querySelectorAll('.filter').forEach(btn => btn.addEventListener('click'
 
 /* Video */
 const video = document.getElementById('promoVideo');
-document.getElementById('videoPlay').addEventListener('click', () => {
+if (video) document.getElementById('videoPlay').addEventListener('click', () => {
   video.controls = true; video.play();
   video.parentElement.classList.add('playing');
 });
 
-/* Lightbox galerije */
+/* Lightbox galerije (samo na početnoj) */
 const lb = document.getElementById('lightbox');
+if (lb) {
 const lbImg = lb.querySelector('img');
 const shots = [...document.querySelectorAll('#gallery a')];
 let cur = 0;
@@ -64,6 +69,7 @@ addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') show(cur - 1);
   if (e.key === 'ArrowRight') show(cur + 1);
 });
+}
 
 /* ===== Forma za rezervaciju ===== */
 const form = document.getElementById('bookingForm');
@@ -74,6 +80,11 @@ const fpPrice = document.getElementById('fpPrice');
 const waLink = document.getElementById('waLink');
 const viberLink = document.getElementById('viberLink');
 const fab = document.getElementById('fab');
+
+if (form) {
+/* Grad iz linka sa stranice grada (npr. /?grad=Beograd#rezervacija) */
+const gradParam = new URLSearchParams(location.search).get('grad');
+if (gradParam && !form.grad.value) form.grad.value = gradParam.slice(0, 60);
 
 form.datum.min = new Date().toISOString().slice(0, 10);
 
@@ -184,3 +195,4 @@ form.addEventListener('submit', async e => {
     btn.disabled = false; btn.textContent = 'Pošalji upit za rezervaciju';
   }
 });
+} // if (form)

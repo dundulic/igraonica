@@ -1,0 +1,71 @@
+{{> head}}
+{{> header}}
+
+<main>
+
+<nav class="breadcrumb container" aria-label="Putanja">
+  <ol>
+    <li><a href="/">Početna</a></li>
+    <li aria-current="page">Gde dolazimo</li>
+  </ol>
+</nav>
+
+<section class="hero hero--city hero--slim">
+  <span class="deco deco--bubble3" aria-hidden="true"></span>
+  <div class="container">
+    <div class="hero__text hero__text--center">
+      <h1><span class="tagline">Pokretna igraonica u celoj Srbiji</span> Gde <span class="c-lilac">dolazimo</span>?</h1>
+      <p class="lead">Bubble Fiesta je pokretna igraonica – ne čekamo vas na jednoj adresi, nego dolazimo tamo gde slavite: u kuću, dvorište, restoran, salu ili vrtić, u zatvorenom i na otvorenom prostoru.</p>
+      <div class="hero__cta">
+        <a href="/#rezervacija" class="btn btn--lilac">Rezerviši termin</a>
+        <a href="/#paketi" class="btn btn--outline">Paketi i cene</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="container">
+    <header class="section__head">
+      <span class="tagline">Gradovi sa posebnim stranicama</span>
+      <h2>Pokretna igraonica <span class="c-mint">u vašem gradu</span></h2>
+      <p>Za ove gradove smo pripremili detaljne informacije o postavci, mestima gde dolazimo i najčešćim pitanjima.</p>
+    </header>
+    <ul class="city-cards">
+      {{cityCards}}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--cream towns">
+  <svg class="wave wave--top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1440v30c-120 30-260 40-400 20S760 10 620 30 300 70 160 50 40 20 0 30z" fill="#fff"/></svg>
+  <div class="container">
+    <header class="section__head">
+      <span class="tagline">I još mnogo mesta</span>
+      <h2>Ostala mesta u Srbiji</h2>
+      <p>Dolazimo i u sledeće gradove i njihovu okolinu. Ne vidite svoje mesto na listi? Pošaljite upit – dogovorićemo dolazak i tamo.</p>
+    </header>
+    <div class="towns__grid">
+      {{townGroups}}
+    </div>
+  </div>
+  <svg class="wave wave--bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80h1440V50c-120-30-260-40-400-20S760 70 620 50 300 10 160 30 40 60 0 50z" fill="#fff"/></svg>
+</section>
+
+<section class="section section--booking" id="rezervacija">
+  <svg class="wave wave--top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1440v30c-120 30-260 40-400 20S760 10 620 30 300 70 160 50 40 20 0 30z" fill="#fff"/></svg>
+  <div class="container booking-cta">
+    <span class="tagline tagline--light">Rezervacija</span>
+    <h2>Javite nam gde slavite</h2>
+    <p>Napišite nam grad i adresu u formi za rezervaciju ili nam pošaljite poruku – javljamo vam se da potvrdimo termin.</p>
+    <div class="chat-btns">
+      <a class="btn btn--white" href="/#rezervacija">Popuni formu za rezervaciju</a>
+      <a class="btn btn--wa" href="https://wa.me/{{phoneIntl}}?text={{waText}}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn--viber" href="viber://chat?number=%2B{{phoneIntl}}">Viber</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+{{> footer}}

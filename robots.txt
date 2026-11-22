@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /tools/
+Disallow: /data/
+Disallow: /templates/
+Disallow: /docs/
+Disallow: /google-apps-script/
+
+Sitemap: https://www.igraonica-bubblefiesta.rs/sitemap.xml

@@ -1,14 +1,52 @@
 # Bubble Fiesta – sajt pokretne igraonice
 
 Statičan sajt (HTML + CSS + JS), bez WordPress-a i baze. Brz je, jeftin za hosting i nema održavanja ni sigurnosnih ažuriranja.
+Stranice gradova, sitemap i SEO podatke pravi mali generator (`node tools/build.js`) – vidi dole.
 
 ## Struktura
-- `index.html` – ceo sajt (jedna stranica: ponuda, paketi i cene, kako radimo, galerija, pitanja, rezervacija)
-- `css/style.css` – izgled
-- `js/main.js` – meni, okvirna cena, forma za rezervaciju, WhatsApp/Viber dugmad
-- `google-apps-script/Code.gs` – prijem rezervacija u Google Sheets + email obaveštenje
-- `img/foto/` – fotografije (optimizovane, max 1400px), `video/` – promo video (bez zvuka)
-- `img/logo.svg` – privremena vektorska verzija loga
+| Putanja | Šta je |
+|---|---|
+| `index.html` | početna (ponuda, paketi i cene, kako radimo, galerija, pitanja, rezervacija) – pisana ručno |
+| `pokretna-igraonica-*.html`, `gde-dolazimo.html`, `404.html`, `sitemap.xml` | **generisano** – ne menjati ručno, menja se `data/` ili `templates/` |
+| `data/site.json` | podaci o firmi (telefon, adresa, radno vreme, paketi) – izvor za JSON-LD |
+| `data/cities.json` | tekstovi za stranice gradova + lista ostalih mesta za /gde-dolazimo |
+| `templates/` | šabloni (`city.html`, `gde-dolazimo.html`, `404.html`) i zajednički delovi (`_head`, `_header`, `_footer`, `_sprite`) |
+| `tools/build.js` | generator + SEO provere (Node.js 18+, bez npm paketa) |
+| `tools/optimize-images.py` | pravi WebP verzije slika (480/800/1200 px) – potreban `pip install pillow` |
+| `css/style.css`, `js/main.js` | izgled i ponašanje (meni, filter, galerija, forma) |
+| `fonts/` | fontovi (lokalno, bez Google Fonts zahteva) |
+| `img/foto/` | fotografije: `ime.jpg` (rezerva) + `ime-480/800/1200.webp` |
+| `img/og/` | slika za deljenje na mrežama (1200×630) |
+| `img/icons/`, `favicon.ico`, `site.webmanifest` | ikonice |
+| `.htaccess` | HTTPS/www preusmerenja, čisti URL-ovi, 404, keš, kompresija (Apache) |
+| `robots.txt` | dozvole za pretraživače + link ka sitemap-u |
+| `google-apps-script/Code.gs` | prijem rezervacija u Google Sheets + email obaveštenje |
+| `docs/seo-report.md`, `docs/seo-checklist.md` | SEO izveštaj i lista koraka za vlasnika |
+
+## Posle svake izmene
+```bash
+node tools/build.js
+```
+Generator pravi stranice i sitemap i proverava: dužinu i jedinstvenost naslova/opisa, tačno jedan H1, redosled naslova,
+alt + width/height na slikama, ispravan JSON-LD i pokvarene interne linkove. Ako nešto nije u redu – ispisuje grešku i ne završava.
+Upozorenja „PLACEHOLDER" znače da u `data/site.json` fali podatak (adresa, radno vreme).
+
+## Kako dodati novi grad
+1. Ako treba nova fotografija: ubaci je u `img/foto/` sa opisnim imenom (mala slova, bez č/ć/š/ž/đ, crtice), pa pokreni
+   ```bash
+   python3 tools/optimize-images.py ime-slike.jpg
+   ```
+2. U `data/cities.json` → `cities` dodaj novi objekat (kopiraj postojeći kao šablon) i **napiši novi tekst**:
+   - `slug`: `pokretna-igraonica-kragujevac` (postaje URL `/pokretna-igraonica-kragujevac`)
+   - `name`: `Kragujevac` · `locative`: `u Kragujevcu` · `genitive`: `iz Kragujevca` – **padeže piši ručno**
+   - `title` (do 60 znakova), `description` (70–155 znakova) – moraju biti drugačiji od ostalih gradova
+   - `tagline`, `lead`, `introHeading`, `intro` (2–3 pasusa), `venues`, `faq` (4–5 pitanja), `image`, `imageAlt`
+   - Tekst mora biti zaista o tom gradu (naselja, okolna sela, tipični prostori) – ne kopirati tuđi tekst sa zamenjenim imenom; Google takve stranice tretira kao duplikate.
+3. Ako je grad bio u `otherTowns` (lista na /gde-dolazimo), skloni ga odande.
+4. Pokreni `node tools/build.js` – nova stranica, linkovi na početnoj/futeru/drugim gradovima i sitemap se ažuriraju sami.
+5. Postavi nove/izmenjene fajlove na hosting i u Google Search Console zatraži indeksiranje novog URL-a.
+
+Mesta za koja ne vredi posebna stranica dodaj samo kao tekst u `otherTowns` (po regionima).
 
 ## Rezervacije
 Forma šalje upit u **Google Sheets tabelu** i **na email** (npr. rezervacije@igraonica-bubblefiesta.rs, povezan sa telefonom).
@@ -17,11 +55,16 @@ Forma šalje upit u **Google Sheets tabelu** i **na email** (npr. rezervacije@ig
 
 Dok `sheetsEndpoint` nije podešen, dugme forme otvara **WhatsApp** sa već popunjenom porukom (datum, paket, mesto…).
 Na sajtu su uvek tu i dugmad WhatsApp / Viber / poziv, kao i plutajuće WhatsApp dugme.
+Dugmad sa stranica gradova vode na `/?grad=Beograd#rezervacija` – grad se sam upiše u formu.
 
 ## Šta treba zameniti
-- **Logo**: sačuvaj originalni logo kao `img/logo.png` i u `index.html` promeni `img/logo.svg` → `img/logo.png` (2 mesta: zaglavlje i futer).
-- **Galerija**: nove slike ubaci u `img/foto/` i dodaj `<a href="img/foto/x.jpg" class="g"><img src="img/foto/x.jpg" alt="…" loading="lazy"></a>` u `#gallery` (`g--tall` za uspravne, `g--wide` za široke).
-- **Cene**: u `index.html` (kartice paketa) i u `js/main.js` → `CONFIG.prices` / `CONFIG.facepainting`.
+- **Logo**: originalni logo sačuvaj kao `img/logo.svg` (ili `.png` i promeni putanju u `index.html` i `templates/_header.html`, `templates/_footer.html`), zatim napravi nove ikonice (`img/icons/`, `favicon.ico`) i sliku za deljenje `img/og/`.
+- **Galerija**: nova slika → `tools/optimize-images.py`, pa u `#gallery` u `index.html` dodaj `<a href="img/foto/ime-1200.webp" class="g"><picture>…</picture></a>` po uzoru na postojeće (`g--tall` za uspravne, `g--wide` za široke).
+- **Cene**: `index.html` (kartice paketa), `data/site.json` → `packages` (stranice gradova i JSON-LD) i `js/main.js` → `CONFIG.prices` / `CONFIG.facepainting`. Posle toga `node tools/build.js`.
+- **Adresa / radno vreme**: `data/site.json`, pa `node tools/build.js`.
 
 ## Hosting
-Bilo koji hosting za statičke fajlove (Netlify, Cloudflare Pages, GitHub Pages ili hosting za domen .rs). Domen usmeriti na hosting.
+Za **Apache shared hosting** (većina .rs hostinga) sve je podešeno u `.htaccess`. Na hosting se postavljaju svi fajlovi osim
+`tools/`, `data/`, `templates/`, `docs/`, `google-apps-script/` i `README.md` (i ako se postave, `.htaccess` ih skriva – vraća 404).
+
+Ako je u pitanju Netlify / Cloudflare Pages: čisti URL-ovi i 404 rade sami, a HTTPS/www preusmerenje se podešava u njihovom panelu.

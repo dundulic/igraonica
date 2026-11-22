@@ -1,0 +1,101 @@
+{
+  "_napomena": "Osnovni podaci o firmi. Polja sa vrednošću \"\" ili [] su PLACEHOLDERI – popuni ih pravim podacima pa pokreni: node tools/build.js",
+  "baseUrl": "https://www.igraonica-bubblefiesta.rs",
+  "name": "Bubble Fiesta",
+  "legalName": "",
+  "description": "Pokretna igraonica za sve vrste veselja: dvorci na naduvavanje, Bubble House, facepainting, animacija i čuvanje dece, Tiffany sto i stolice. Dolazimo na vašu adresu, u zatvorenom i na otvorenom prostoru.",
+  "telephone": "+381 62 592 271",
+  "telephoneHref": "+38162592271",
+  "phoneIntl": "38162592271",
+  "phoneDisplay": "062 592 271",
+  "email": "",
+  "instagram": "https://www.instagram.com/bubble_fiestaa",
+  "facebook": "",
+  "logo": "/img/icons/icon-512.png",
+  "image": "/img/og/bubble-fiesta-pokretna-igraonica.jpg",
+  "priceRange": "60–80 € po satu",
+  "currenciesAccepted": "EUR, RSD",
+
+  "address": {
+    "_napomena": "PLACEHOLDER: adresa sedišta ili mesto odakle polazite. Google Business Profile i LocalBusiness je traže. Ako ne želite javnu adresu, upišite bar grad (addressLocality) i poštanski broj.",
+    "streetAddress": "",
+    "addressLocality": "",
+    "postalCode": "",
+    "addressRegion": "",
+    "addressCountry": "RS"
+  },
+  "geo": {
+    "_napomena": "PLACEHOLDER (opciono): koordinate sedišta, npr. 44.4378 i 20.6950",
+    "latitude": "",
+    "longitude": ""
+  },
+  "openingHours": {
+    "_napomena": "PLACEHOLDER: radno vreme / vreme kada primate rezervacije. Format: dani Mo,Tu,We,Th,Fr,Sa,Su, vreme HH:MM. Primer ispod je obrisan dok ga ne potvrdite.",
+    "specification": []
+  },
+  "_primerOpeningHours": [
+    { "days": ["Mo", "Tu", "We", "Th", "Fr"], "opens": "10:00", "closes": "20:00" },
+    { "days": ["Sa", "Su"], "opens": "09:00", "closes": "22:00" }
+  ],
+
+  "areaServedCities": ["Beograd", "Novi Sad", "Mladenovac", "Smederevo", "Kragujevac", "Niš", "Pančevo", "Požarevac", "Smederevska Palanka", "Šabac"],
+
+  "packages": [
+    {
+      "id": "1",
+      "name": "Paket 1",
+      "price": 60,
+      "color": "mint",
+      "items": [
+        "Beli dvorac sa bazenom i lopticama",
+        "Bubble House",
+        "Tiffany stolovi i stolice",
+        "Edukativne igračke (slagalice, umetaljke, bojanke, plastelin)",
+        "Balon mašina",
+        "Dve žene koje paze na decu i njihovu bezbednost"
+      ],
+      "facepainting": "Facepainting uz ovaj paket: <b>+20€</b>",
+      "description": "Beli dvorac sa bazenom i lopticama, Bubble House, Tiffany stolovi i stolice, edukativne igračke, balon mašina i dve žene koje paze na decu. Facepainting +20€."
+    },
+    {
+      "id": "2",
+      "name": "Paket 2",
+      "price": 70,
+      "color": "pink",
+      "items": [
+        "Beli dvorac sa toboganom",
+        "Bubble House",
+        "Tiffany stolovi i stolice",
+        "Puzzle podloga",
+        "Edukativne igračke (slagalice, umetaljke, bojanke, plastelin)",
+        "Balon mašina",
+        "Mašina za hvatanje bombona i slatkiša <em>gratis</em>",
+        "Bazen sa lopticama",
+        "Ograda",
+        "Dve žene koje paze na decu i njihovu bezbednost"
+      ],
+      "facepainting": "Facepainting uz ovaj paket: <b>+10€</b>",
+      "description": "Beli dvorac sa toboganom, Bubble House, Tiffany stolovi i stolice, puzzle podloga, edukativne igračke, balon mašina, mašina za slatkiše (gratis), bazen sa lopticama, ograda i dve žene koje paze na decu. Facepainting +10€."
+    },
+    {
+      "id": "3",
+      "name": "Paket 3",
+      "price": 80,
+      "color": "lilac",
+      "featured": true,
+      "items": [
+        "Beli dvorac sa bazenom <b>+</b> beli dvorac sa toboganom",
+        "Bubble House",
+        "Mašina za hvatanje bombona i slatkiša <em>gratis</em>",
+        "Tiffany stolovi i stolice",
+        "Puzzle podloga",
+        "Edukativne igračke (slagalice, umetaljke, bojanke, plastelin)",
+        "Bazen sa lopticama",
+        "Ograda",
+        "Dve žene koje paze na decu i njihovu bezbednost"
+      ],
+      "facepainting": "Facepainting: <b>GRATIS</b> 😊",
+      "description": "Dva bela dvorca (sa bazenom i sa toboganom), Bubble House, mašina za slatkiše (gratis), Tiffany stolovi i stolice, puzzle podloga, edukativne igračke, bazen sa lopticama, ograda i dve žene koje paze na decu. Facepainting gratis."
+    }
+  ]
+}

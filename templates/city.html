@@ -1,0 +1,116 @@
+{{> head}}
+{{> header}}
+
+<main>
+
+<nav class="breadcrumb container" aria-label="Putanja">
+  <ol>
+    <li><a href="/">Početna</a></li>
+    <li><a href="/gde-dolazimo">Gde dolazimo</a></li>
+    <li aria-current="page">{{name}}</li>
+  </ol>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero hero--city">
+  <svg class="deco deco--star1" aria-hidden="true"><use href="#i-star"/></svg>
+  <span class="deco deco--bubble3" aria-hidden="true"></span>
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <h1><span class="tagline">{{tagline}}</span> Pokretna igraonica <span class="c-lilac">{{locative}}</span></h1>
+      <p class="lead">{{lead}}</p>
+      <div class="hero__cta">
+        <a href="/?grad={{nameUrl}}#rezervacija" class="btn btn--lilac">Rezerviši termin {{locative}}</a>
+        <a href="#paketi" class="btn btn--outline">Paketi i cene</a>
+      </div>
+      <ul class="hero__badges">
+        <li><span class="blob-ico blob-ico--yellow"><svg><use href="#i-home"/></svg></span>U zatvorenom</li>
+        <li><span class="blob-ico blob-ico--mint"><svg><use href="#i-tree"/></svg></span>Na otvorenom</li>
+        <li><span class="blob-ico blob-ico--pink"><svg><use href="#i-van"/></svg></span>Na vašoj adresi</li>
+      </ul>
+    </div>
+    <div class="video-sec__media">
+      <div class="video-frame">{{heroPicture}}</div>
+      <span class="blob-shape blob-shape--mint" aria-hidden="true"></span>
+      <span class="blob-shape blob-shape--pink" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEKST O GRADU ============ -->
+<section class="section section--white city-intro">
+  <div class="container city-intro__inner">
+    <div>
+      <span class="tagline">Bubble Fiesta {{locative}}</span>
+      <h2>{{introHeading}}</h2>
+      {{introParagraphs}}
+    </div>
+    <aside class="city-venues" aria-labelledby="venues-title">
+      <h3 id="venues-title">Gde postavljamo igraonicu {{locative}}</h3>
+      <ul class="ticks">
+        {{venuesList}}
+      </ul>
+      <a href="/?grad={{nameUrl}}#rezervacija" class="btn btn--mint">Pošalji upit</a>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ PAKETI ============ -->
+<section class="section section--cream" id="paketi">
+  <svg class="wave wave--top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1440v30c-120 30-260 40-400 20S760 10 620 30 300 70 160 50 40 20 0 30z" fill="#fff"/></svg>
+  <div class="container">
+    <header class="section__head">
+      <span class="tagline">Iste cene u celoj Srbiji</span>
+      <h2><span class="c-mint">Paketi i cene</span> {{locative}}</h2>
+      <p>Sve cene su za 1 sat. Ako nešto iz paketa ne želite, možemo ga korigovati i dogovoriti cenu – niste u obavezi da uzmete baš sve. 😊</p>
+    </header>
+    <div class="pkgs">
+      {{packages}}
+    </div>
+  </div>
+  <svg class="wave wave--bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80h1440V50c-120-30-260-40-400-20S760 70 620 50 300 10 160 30 40 60 0 50z" fill="#fff"/></svg>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section section--white" id="pitanja">
+  <div class="container faq-wrap">
+    <div class="faq-wrap__side">
+      <span class="tagline">Česta pitanja</span>
+      <h2><span class="c-mint">Pitanja</span> o igraonici {{locative}}</h2>
+      <p>Ne vidite odgovor? Pozovite nas ili pošaljite poruku – rado ćemo pomoći.</p>
+      <a href="tel:{{telephoneHref}}" class="btn btn--outline"><svg><use href="#i-phone"/></svg>{{phoneDisplay}}</a>
+    </div>
+    <div class="faq">
+      {{faqItems}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ REZERVACIJA (CTA) ============ -->
+<section class="section section--booking" id="rezervacija">
+  <svg class="wave wave--top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1440v30c-120 30-260 40-400 20S760 10 620 30 300 70 160 50 40 20 0 30z" fill="#fff"/></svg>
+  <svg class="deco deco--star3" aria-hidden="true"><use href="#i-star"/></svg>
+  <div class="container booking-cta">
+    <span class="tagline tagline--light">Rezervacija</span>
+    <h2>Rezervišite igraonicu {{locative}}</h2>
+    <p>Popunite kratku formu – grad je već upisan – ili nam pišite direktno. Javljamo vam se u najkraćem roku da potvrdimo termin.</p>
+    <div class="chat-btns">
+      <a class="btn btn--white" href="/?grad={{nameUrl}}#rezervacija">Popuni formu za rezervaciju</a>
+      <a class="btn btn--wa" href="https://wa.me/{{phoneIntl}}?text={{waText}}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn--viber" href="viber://chat?number=%2B{{phoneIntl}}">Viber</a>
+      <a class="btn btn--white" href="tel:{{telephoneHref}}"><svg><use href="#i-phone"/></svg>Pozovi</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DRUGI GRADOVI ============ -->
+<section class="section section--white other-cities">
+  <div class="container">
+    <h2 class="other-cities__title">Dolazimo i u druge gradove</h2>
+    <p class="city-links">{{otherCityLinks}}</p>
+  </div>
+</section>
+
+</main>
+
+{{> footer}}
