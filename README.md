@@ -74,13 +74,13 @@ Link je u futeru svake stranice i ispod dugmeta forme. Šta još treba popuniti:
 Mesta za koja ne vredi posebna stranica dodaj samo kao tekst u `otherTowns` (po regionima).
 
 ## Rezervacije
-Forma šalje upit u **Google Sheets tabelu** i **na email** (npr. rezervacije@igraonica-bubblefiesta.rs, povezan sa telefonom).
-1. Prati uputstvo na vrhu `google-apps-script/Code.gs`.
-2. Dobijeni URL veb-aplikacije nalepi u `js/main.js` → `CONFIG.sheetsEndpoint`.
+Forma šalje upit Google Apps Script veb-aplikaciji (`google-apps-script/Code.gs`), koja ga proveri (Cloudflare Turnstile,
+token, minimalno vreme popunjavanja, provera polja, ograničenje broja upita), upiše u Google tabelu i pošalje mejl na
+rezervacije@igraonica-bubblefiesta.rs. **Postavljanje, Script properties i ponovni deploy: `docs/google-sheets-setup.md`.**
 
-Dok `sheetsEndpoint` nije podešen, dugme forme otvara **WhatsApp** sa već popunjenom porukom (datum, paket, mesto…).
-Na sajtu su uvek tu i dugmad WhatsApp / Viber / poziv, kao i plutajuće WhatsApp dugme.
-Dugmad sa stranica gradova vode na `/?grad=Beograd#rezervacija` – grad se sam upiše u formu.
+Ako `CONFIG.sheetsEndpoint` u `js/main.js` nije podešen, dugme forme otvara **WhatsApp** sa popunjenom porukom; ako slanje
+ne uspe, ispod dugmeta se nudi isti upit preko WhatsApp-a. Cloudflare Turnstile se učitava tek kad korisnik počne da popunjava formu.
+Dugmad sa stranica gradova vode na `index.html?grad=Beograd#rezervacija` – grad se sam upiše u formu.
 
 ## Šta treba zameniti
 - **Logo**: originalni logo je `img/logo.svg` (isti fajl je i `img/favicon.svg`). Ako se logo promeni, zameni oba fajla pa ponovo napravi ikonice (`img/icons/`, `favicon.ico`) i sliku za deljenje (`img/og/`).

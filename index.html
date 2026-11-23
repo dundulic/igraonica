@@ -687,8 +687,8 @@
 
     <form class="form" id="bookingForm" novalidate>
       <div class="form__row">
-        <label>Ime i prezime*<input type="text" name="ime" required autocomplete="name" placeholder="npr. Marija Petrović"></label>
-        <label>Telefon*<input name="telefon" type="tel" required autocomplete="tel" placeholder="06x xxx xxxx"></label>
+        <label>Ime i prezime*<input type="text" name="ime" required autocomplete="name" placeholder="npr. Marija Petrović" maxlength="100"></label>
+        <label>Telefon*<input name="telefon" type="tel" required autocomplete="tel" placeholder="06x xxx xxxx" maxlength="30"></label>
       </div>
       <div class="form__row">
         <label>Datum proslave*<input name="datum" type="date" required></label>
@@ -715,8 +715,8 @@
         </label>
       </div>
       <div class="form__row">
-        <label>Grad*<input type="text" name="grad" required placeholder="npr. Beograd"></label>
-        <label>Adresa / mesto proslave<input type="text" name="adresa" placeholder="restoran, ulica i broj…"></label>
+        <label>Grad*<input type="text" name="grad" required placeholder="npr. Beograd" maxlength="100"></label>
+        <label>Adresa / mesto proslave<input type="text" name="adresa" placeholder="restoran, ulica i broj…" maxlength="100"></label>
       </div>
       <div class="form__row">
         <fieldset class="seg">
@@ -735,8 +735,9 @@
           <option>Druga proslava</option>
         </select>
       </label>
-      <label>Napomena<textarea name="poruka" rows="3" placeholder="Šta želite da izbacimo/dodamo, veličina prostora, pitanja…"></textarea></label>
+      <label>Napomena<textarea name="poruka" maxlength="1000" rows="3" placeholder="Šta želite da izbacimo/dodamo, veličina prostora, pitanja…"></textarea></label>
       <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="form__turnstile" id="turnstile"></div>
       <button class="btn btn--lilac btn--block" type="submit">Pošalji upit za rezervaciju</button>
       <p class="form__privacy">Slanjem upita saglasni ste sa obradom podataka radi odgovora na upit. Više u <a href="politika-privatnosti.html">politici privatnosti</a>.</p>
       <p class="form__status" id="formStatus" role="status"></p>

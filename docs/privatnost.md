@@ -18,7 +18,7 @@ Dok god neki placeholder nije popunjen, na stranici je istaknut žutom bojom, a 
 | `retention` | godinu dana |
 | `hostingProvider` | Plus Hosting |
 | `emailProvider` | Plus Hosting (email na domenu sajta) |
-| `lastUpdated` | 22. novembar 2026. |
+| `lastUpdated` | 23. novembar 2026. |
 
 Svi placeholderi u politici su popunjeni. Kada su hosting i email kod istog provajdera, generator ih prikazuje kao jednu stavku.
 Pri svakoj izmeni politike promeniti `lastUpdated` i pokrenuti `node tools/build.js`.
@@ -30,19 +30,14 @@ Na stranici se, po dogovoru, ne prikazuju adresa, PIB ni matični broj – rukov
 
 ## Kolačići
 Provereno: sajt ne postavlja nijedan kolačić, ne koristi localStorage/sessionStorage, nema analitiku i pri učitavanju ne šalje
-nijedan zahtev drugim serverima (fontovi, slike i video su na našem serveru). Zato **nije potreban baner za kolačiće**.
+nijedan zahtev drugim serverima (fontovi, slike i video su na našem serveru); Cloudflare Turnstile se učitava tek kad korisnik počne da popunjava formu. Zato **nije potreban baner za kolačiće**.
 Ako se ikad doda analitika, reklame, Google mape, ugrađeni Instagram ili Cloudflare Turnstile, prvo proveriti da li postavljaju kolačiće,
 dopuniti tačku 8 politike i tek onda (ako treba) dodati baner.
 
-## Cloudflare Turnstile (zaštita forme od spama) – trenutno se NE koristi
-Turnstile nije uključen na sajtu, pa se u politici ne pominje (navođenje servisa koji se ne koristi bilo bi netačno).
-Ako se uključi, u `templates/politika-privatnosti.html` u tački 6 dodati:
-
-```html
-<li><strong>Cloudflare Turnstile (Cloudflare, Inc.)</strong> – provera da formu popunjava čovek, a ne automatizovani program. Prilikom slanja forme Cloudflare obrađuje tehničke podatke o uređaju i pregledaču (npr. IP adresu) radi zaštite od zloupotrebe.</li>
-```
-
-i u tački 8 navesti kolačiće koje Turnstile postavi (proveriti u pregledaču posle uključivanja).
+## Cloudflare Turnstile (zaštita forme od spama) – KORISTI SE od 23. 11. 2026.
+Turnstile je naveden u politici (tačka 6 – obrađivači, tačka 8 – kolačići). Učitava se tek kada korisnik počne da popunjava formu
+(ne pri otvaranju stranice), u nevidljivom režimu – prikazuje se samo ako Cloudflare zatraži dodatnu proveru.
+Naš domen i dalje ne postavlja nijedan kolačić. Tehnička podešavanja: `docs/google-sheets-setup.md`.
 
 ## Forma i saglasnost
 Ispod dugmeta „Pošalji upit za rezervaciju" stoji obaveštenje sa linkom na politiku. Obavezno polje „Pročitao/la sam politiku privatnosti"

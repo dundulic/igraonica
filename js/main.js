@@ -1,8 +1,13 @@
 /* ===== Bubble Fiesta – skripta ===== */
 const CONFIG = {
-  // Nalepi URL Google Apps Script veb-aplikacije (vidi google-apps-script/Code.gs i README.md).
-  // Dok je prazno, forma otvara WhatsApp sa popunjenom porukom.
-  sheetsEndpoint: '',
+  // Google Apps Script veb-aplikacija (google-apps-script/Code.gs) – upis u tabelu + email.
+  // Uputstvo: docs/google-sheets-setup.md. Ako je prazno, forma otvara WhatsApp sa popunjenom porukom.
+  sheetsEndpoint: 'https://script.google.com/macros/s/AKfycbx9ECZIVA3Ssgu9hwPPXD6A56ieDLDjtK8I1DXyo-MsN9j0dPBDAU11JgpusFRxg-lj5Q/exec',
+  // Cloudflare Turnstile (zaštita od spama) – javni "Site key"; tajni ključ je SAMO u Apps Script Script Properties.
+  turnstileSiteKey: '0x4AAAAAAGPA-3IYZKKRry5G',
+  // Mora biti isti kao Script Property FORM_TOKEN. Nije tajna (vidljiv je u pregledaču) – samo dodatni filter;
+  // pravu zaštitu daje Turnstile provera na serveru.
+  formToken: 'bf_ba3ed5bf7daeb0095d12e005ff620f85a0fc0556',
   phoneIntl: '38162592271',
   prices: { '1': 60, '2': 70, '3': 80 },
   facepainting: { '1': 20, '2': 10, '3': 0 },
@@ -86,13 +91,17 @@ if (form) {
 const gradParam = new URLSearchParams(location.search).get('grad');
 if (gradParam && !form.grad.value) form.grad.value = gradParam.slice(0, 60);
 
-form.datum.min = new Date().toISOString().slice(0, 10);
+const loadedAt = Date.now();   // vreme otvaranja stranice – server odbija upite poslate za manje od 3 s
+const localToday = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
+form.datum.min = localToday();
 
 // Klik na "Rezerviši paket X" preselektuje paket
 document.querySelectorAll('[data-package]').forEach(btn => {
   btn.addEventListener('click', () => { form.paket.value = btn.dataset.package; update(); });
 });
 
+const FIELD_LABELS = { ime: 'Ime i prezime', telefon: 'Telefon', datum: 'Datum proslave', vreme: 'Vreme početka', paket: 'Paket',
+  grad: 'Grad', adresa: 'Adresa', poruka: 'Napomena', prostor: 'Prostor', proslava: 'Vrsta proslave' };
 const pkgName = v => ({ '1': 'Paket 1', '2': 'Paket 2', '3': 'Paket 3', custom: 'Pojedinačne stavke / po dogovoru' }[v] || '');
 
 function calc() {
@@ -145,14 +154,23 @@ form.addEventListener('input', update);
 form.addEventListener('change', update);
 update();
 
+// Ista pravila kao na serveru (google-apps-script/Code.gs), da korisnik grešku vidi odmah
+const isSerbianPhone = v => /^\+?[\d\s\-\/]+$/.test(v) &&
+  (/^\+381\d{8,9}$/.test(v.replace(/[\s\-\/]/g, '')) || /^06\d{7,8}$/.test(v.replace(/[\s\-\/]/g, '')));
+const hasLink = v => /(https?:|www\.|\[url|<\s*a\s)/i.test(v);
+function markInvalid(name) {
+  const el = name === 'prostor' ? form.querySelector('.seg') : form[name];
+  if (el && el.classList) el.classList.add('invalid');
+}
 function validate() {
   let ok = true;
+  const bad = n => { markInvalid(n); ok = false; };
   form.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
-  ['ime', 'telefon', 'datum', 'vreme', 'paket', 'grad'].forEach(n => {
-    if (!form[n].value.trim()) { form[n].classList.add('invalid'); ok = false; }
-  });
-  if (form.telefon.value && form.telefon.value.replace(/\D/g, '').length < 8) { form.telefon.classList.add('invalid'); ok = false; }
-  if (!form.querySelector('[name=prostor]:checked')) { form.querySelector('.seg').classList.add('invalid'); ok = false; }
+  ['ime', 'telefon', 'datum', 'vreme', 'paket', 'grad'].forEach(n => { if (!form[n].value.trim()) bad(n); });
+  if (form.telefon.value.trim() && !isSerbianPhone(form.telefon.value.trim())) bad('telefon');
+  if (form.datum.value && form.datum.value < localToday()) bad('datum');
+  ['ime', 'grad', 'adresa', 'poruka'].forEach(n => { if (hasLink(form[n].value)) bad(n); });
+  if (!form.querySelector('[name=prostor]:checked')) bad('prostor');
   return ok;
 }
 
@@ -161,38 +179,122 @@ form.addEventListener('submit', async e => {
   statusEl.className = 'form__status';
   if (form.website.value) return; // spam zamka
   if (!validate()) {
-    statusEl.textContent = 'Molimo popunite obavezna polja označena sa *.';
+    statusEl.textContent = 'Proverite označena polja: obavezna su polja sa *, telefon u formatu 06x… ili +381…, datum ne može biti u prošlosti, a linkovi nisu dozvoljeni.';
     statusEl.classList.add('err');
     form.querySelector('.invalid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
 
-  if (!CONFIG.sheetsEndpoint) {
-    window.open(`https://wa.me/${CONFIG.phoneIntl}?text=${encodeURIComponent(message())}`, '_blank');
-    statusEl.textContent = 'Otvaramo WhatsApp sa vašim upitom – samo pritisnite „Pošalji“. 💬';
-    statusEl.classList.add('ok');
-    return;
-  }
+  if (!CONFIG.sheetsEndpoint) { openWhatsAppFallback(); return; }
 
   const btn = form.querySelector('[type=submit]');
   btn.disabled = true; btn.textContent = 'Šaljem…';
-  const data = new FormData(form);
-  data.delete('website');
-  data.set('paket', pkgName(form.paket.value));
-  data.set('trajanje', form.trajanje.selectedOptions[0].text);
-  data.set('facepainting', form.facepainting.checked ? 'Da' : 'Ne');
-  const c = calc();
-  data.set('cena', c ? `${c.total}€` : 'po dogovoru');
   try {
-    await fetch(CONFIG.sheetsEndpoint, { method: 'POST', body: data, mode: 'no-cors' });
-    form.reset(); update();
-    statusEl.textContent = 'Hvala! Vaš upit je poslat 🎉 Javićemo vam se uskoro da potvrdimo termin.';
-    statusEl.classList.add('ok');
+    const tsToken = await getTurnstileToken();
+    if (!tsToken) { offerWhatsApp('Zaštita forme trenutno ne može da se učita.'); return; }
+    const data = new URLSearchParams(new FormData(form));
+    data.delete('website');
+    data.set('paket', pkgName(form.paket.value));
+    data.set('trajanje', form.trajanje.selectedOptions[0].text);
+    data.set('facepainting', form.facepainting.checked ? 'Da' : 'Ne');
+    const c = calc();
+    data.set('cena', c ? `${c.total}€` : 'po dogovoru');
+    data.set('form_token', CONFIG.formToken);
+    data.set('cf-turnstile-response', tsToken);
+    data.set('ts', String(loadedAt));
+    data.set('elapsed', String(Date.now() - loadedAt));
+    // URLSearchParams = "jednostavan" CORS zahtev (bez preflight-a); Google vraća JSON koji možemo da pročitamo
+    const res = await fetch(CONFIG.sheetsEndpoint, { method: 'POST', body: data });
+    const out = await res.json();
+    if (out.ok) {
+      form.reset(); update();
+      statusEl.textContent = 'Hvala! Vaš upit je poslat 🎉 Javićemo vam se uskoro da potvrdimo termin.';
+      statusEl.classList.add('ok');
+    } else if (out.error === 'turnstile') {
+      statusEl.textContent = 'Provera zaštite nije uspela – pritisnite „Pošalji“ još jednom.';
+      statusEl.classList.add('err');
+    } else if (out.error === 'invalid') {
+      if (out.field) markInvalid(out.field);
+      statusEl.textContent = (FIELD_LABELS[out.field] ? `Proverite polje „${FIELD_LABELS[out.field]}“. ` : '') +
+        'Telefon u formatu 06x… ili +381…, datum ne može biti u prošlosti, bez linkova u tekstu.';
+      statusEl.classList.add('err');
+    } else if (out.error === 'too_fast') {
+      statusEl.textContent = 'Forma je poslata prebrzo – sačekajte trenutak pa pritisnite „Pošalji“ ponovo.';
+      statusEl.classList.add('err');
+    } else if (out.error === 'expired') {
+      statusEl.textContent = 'Stranica je bila otvorena predugo – osvežite je pa pošaljite upit ponovo.';
+      statusEl.classList.add('err');
+    } else if (out.error === 'rate_limit') {
+      statusEl.textContent = 'Već smo primili više upita u poslednjih sat vremena – javićemo vam se uskoro. Za hitne termine pozovite 062 592 271.';
+      statusEl.classList.add('err');
+    } else {
+      offerWhatsApp('Slanje trenutno nije uspelo.');
+    }
   } catch {
-    statusEl.textContent = 'Ups, slanje nije uspelo. Pišite nam na WhatsApp ili pozovite 062 592 271.';
-    statusEl.classList.add('err');
+    offerWhatsApp('Slanje trenutno nije uspelo.');
   } finally {
+    resetTurnstile();   // token se može iskoristiti samo jednom – za sledeće slanje treba nov
     btn.disabled = false; btn.textContent = 'Pošalji upit za rezervaciju';
   }
 });
+
+/* Bez Google veze: otvori WhatsApp odmah (klik korisnika – nije blokirano) */
+function openWhatsAppFallback() {
+  window.open(`https://wa.me/${CONFIG.phoneIntl}?text=${encodeURIComponent(message())}`, '_blank');
+  statusEl.className = 'form__status ok';
+  statusEl.textContent = 'Otvaramo WhatsApp sa vašim upitom – samo pritisnite „Pošalji“. 💬';
+}
+/* Kad slanje ne uspe: upit se ne gubi – nudimo isti upit preko WhatsApp-a (dugme, jer pop-up posle čekanja blokira pregledač) */
+function offerWhatsApp(reason) {
+  statusEl.className = 'form__status err';
+  statusEl.textContent = reason + ' Vaš upit možete odmah poslati preko WhatsApp-a: ';
+  const a = document.createElement('a');
+  a.href = `https://wa.me/${CONFIG.phoneIntl}?text=${encodeURIComponent(message())}`;
+  a.target = '_blank'; a.rel = 'noopener';
+  a.className = 'btn btn--wa btn--sm form__wa';
+  a.textContent = 'Pošalji preko WhatsApp-a';
+  statusEl.append(a);
+}
+
+/* ===== Cloudflare Turnstile – učitava se tek kada korisnik počne da popunjava formu ===== */
+let tsWidget = null, tsToken = '', tsFailed = false, tsLoading = null;
+const tsWaiters = [];
+function loadTurnstile() {
+  if (tsLoading || !CONFIG.turnstileSiteKey || !CONFIG.sheetsEndpoint) return tsLoading;
+  tsLoading = new Promise(resolve => {
+    window.bfTurnstileReady = () => {
+      try {
+        tsWidget = window.turnstile.render('#turnstile', {
+          sitekey: CONFIG.turnstileSiteKey,
+          appearance: 'interaction-only',      // nevidljivo, osim ako Cloudflare zatraži proveru
+          callback: t => { tsToken = t; tsWaiters.splice(0).forEach(f => f(t)); },
+          'expired-callback': () => { tsToken = ''; },
+          'error-callback': () => { tsFailed = true; tsWaiters.splice(0).forEach(f => f('')); },
+        });
+      } catch { tsFailed = true; }
+      resolve();
+    };
+    const sc = document.createElement('script');
+    sc.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=bfTurnstileReady';
+    sc.async = true; sc.defer = true;
+    sc.onerror = () => { tsFailed = true; tsWaiters.splice(0).forEach(f => f('')); resolve(); };
+    document.head.append(sc);
+  });
+  return tsLoading;
+}
+function getTurnstileToken(timeout = 15000) {
+  loadTurnstile();
+  if (tsToken) return Promise.resolve(tsToken);
+  if (tsFailed) return Promise.resolve('');
+  return new Promise(resolve => {
+    const done = t => { clearTimeout(timer); resolve(t); };
+    const timer = setTimeout(() => { const i = tsWaiters.indexOf(done); if (i > -1) tsWaiters.splice(i, 1); resolve(''); }, timeout);
+    tsWaiters.push(done);
+  });
+}
+function resetTurnstile() {
+  tsToken = '';
+  if (tsWidget !== null && window.turnstile) window.turnstile.reset(tsWidget);
+}
+form.addEventListener('focusin', loadTurnstile, { once: true });
 } // if (form)

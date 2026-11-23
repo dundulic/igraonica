@@ -445,3 +445,8 @@ picture{display:contents}
 .legal a:not(.btn){color:var(--lilac-d);font-weight:600}
 .legal__back{margin-top:2.6rem;text-align:center}
 mark.ph{background:var(--yellow);color:var(--ink);padding:0 .3em;border-radius:6px;font-weight:700}
+
+/* ===== Turnstile (zaštita forme) i rezervni WhatsApp ===== */
+.form__turnstile:empty{display:none}
+.form__turnstile{display:flex;justify-content:center}
+.form__wa{display:flex;width:max-content;margin:.7rem auto 0}
