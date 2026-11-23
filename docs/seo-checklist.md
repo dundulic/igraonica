@@ -11,7 +11,7 @@ Ovo je profil koji se pojavljuje na Google mapama i desno u pretrazi („pokretn
 - [ ] Naziv: **Bubble Fiesta** (bez dodatnih reči – Google kažnjava „Bubble Fiesta pokretna igraonica Beograd").
 - [ ] Kategorija: u polje za kategoriju počnite da kucate „dečij" ili „zabav" i izaberite onu koja odgovara engleskoj **Children's party service** (glavna). Kao dodatne potražite **Party equipment rental service** i **Children's amusement center** / „animator". Tačni srpski nazivi zavise od Google prevoda – birajte najbliži ponuđeni.
 - [ ] Pošto dolazite kod klijenata, profil podesite kao **firmu sa područjem usluge** (opcija da posećujete ili dostavljate klijentima) i **sakrijte adresu**. Kao područja usluge upišite Beograd, Novi Sad, Mladenovac, Smederevo i druge gradove.
-- [ ] Telefon: **062 592 271** · Sajt: **https://www.igraonica-bubblefiesta.rs**
+- [ ] Telefon: **062 592 271** · Sajt: **https://igraonica-bubblefiesta.rs** (bez www)
 - [ ] Radno vreme (isto upišite i na sajt – vidi „Šta još fali" dole).
 - [ ] **Verifikujte profil** (Google šalje kod – video snimak, SMS ili poziv). Bez verifikacije profil se ne prikazuje.
 - [ ] Dodajte bar **10 fotografija** (dvorci, Bubble House, Tiffany kutak) i logo.
@@ -41,7 +41,7 @@ Kod za praćenje dodaje Anđela; posle toga se vidi koliko ljudi dolazi i sa koj
 - [ ] Cilj: 10+ recenzija u prva 3 meseca. Ne nudite popust u zamenu za recenziju (Google to zabranjuje).
 
 ## 5. Instagram i drugi profili
-- [ ] Instagram **@bubble_fiestaa** → Uredi profil → **Linkovi** → dodajte `https://www.igraonica-bubblefiesta.rs`.
+- [ ] Instagram **@bubble_fiestaa** → Uredi profil → **Linkovi** → dodajte `https://igraonica-bubblefiesta.rs` (bez www – i stare www linkove promenite, rade, ali idu preko preusmerenja).
 - [ ] U opisu profila spomenite „Pokretna igraonica · dvorci na naduvavanje · cela Srbija".
 - [ ] Ako napravite Facebook stranicu: dodajte isti link i javite Anđeli da ga ubaci u podatke sajta.
 - [ ] Naziv, telefon i sajt neka budu **isti svuda** (Instagram, Facebook, Google, oglasi) – Google proverava da li se podaci slažu.

@@ -353,7 +353,8 @@ for (const p of [...pages, { file: '404.html', noindex: true }]) {
   if (!p.noindex) {
     if (seenT[title]) errors.push(`${p.file}: naslov isti kao na ${seenT[title]}`); seenT[title] = p.file;
     if (seenD[desc]) errors.push(`${p.file}: opis isti kao na ${seenD[desc]}`); seenD[desc] = p.file;
-    if (!/<link rel="canonical" href="https:\/\/www\./.test(html)) errors.push(`${p.file}: nema canonical`);
+    if (!html.includes(`<link rel="canonical" href="${BASE}/`)) errors.push(`${p.file}: nema canonical (ili ne pokazuje na ${BASE})`);
+    if (/https:\/\/www\.igraonica-bubblefiesta\.rs/.test(html)) errors.push(`${p.file}: još sadrži www. adresu – kanonski domen je ${BASE}`);
   }
   const h1 = (html.match(/<h1[\s>]/g) || []).length;
   if (h1 !== 1) errors.push(`${p.file}: ima ${h1} H1 naslova (treba tačno 1)`);

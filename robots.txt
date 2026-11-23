@@ -6,4 +6,4 @@ Disallow: /templates/
 Disallow: /docs/
 Disallow: /google-apps-script/
 
-Sitemap: https://www.igraonica-bubblefiesta.rs/sitemap.xml
+Sitemap: https://igraonica-bubblefiesta.rs/sitemap.xml

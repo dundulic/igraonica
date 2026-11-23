@@ -18,7 +18,7 @@ Stranice gradova, sitemap i SEO podatke pravi mali generator (`node tools/build.
 | `img/foto/` | fotografije: `ime.jpg` (rezerva) + `ime-480/800/1200.webp` |
 | `img/og/` | slika za deljenje na mrežama (1200×630) |
 | `img/icons/`, `favicon.ico`, `site.webmanifest` | ikonice |
-| `.htaccess` | HTTPS/www preusmerenja, čisti URL-ovi, 404, keš, kompresija (Apache) |
+| `.htaccess` | preusmerenja na https://igraonica-bubblefiesta.rs (bez www), čisti URL-ovi, 404, keš, kompresija (Apache) |
 | `robots.txt` | dozvole za pretraživače + link ka sitemap-u |
 | `google-apps-script/Code.gs` | prijem rezervacija u Google Sheets + email obaveštenje |
 | `docs/seo-report.md`, `docs/seo-checklist.md` | SEO izveštaj i lista koraka za vlasnika |
@@ -89,7 +89,20 @@ Dugmad sa stranica gradova vode na `/?grad=Beograd#rezervacija` – grad se sam 
 - **Adresa / radno vreme**: `data/site.json`, pa `node tools/build.js`.
 
 ## Hosting
-Za **Apache shared hosting** (većina .rs hostinga) sve je podešeno u `.htaccess`. Na hosting se postavljaju svi fajlovi osim
-`tools/`, `data/`, `templates/`, `docs/`, `google-apps-script/` i `README.md` (i ako se postave, `.htaccess` ih skriva – vraća 404).
+Sajt je na **cPanel hostingu kao addon domen na silvent.rs**. Glavna (kanonska) adresa je **https://igraonica-bubblefiesta.rs** – bez www.
+`data/site.json` → `baseUrl` određuje adresu u canonical tagovima, sitemap-u, robots.txt-u, JSON-LD-u i linkovima za deljenje;
+`.htaccess` sve ostale adrese preusmerava (301) na nju, u jednom skoku, uz zadržavanje putanje i query stringa (npr. `?grad=Niš`):
 
-Ako je u pitanju Netlify / Cloudflare Pages: čisti URL-ovi i 404 rade sami, a HTTPS/www preusmerenje se podešava u njihovom panelu.
+| Otvoreno | Završava na |
+|---|---|
+| `http://igraonica-bubblefiesta.rs/...` | `https://igraonica-bubblefiesta.rs/...` |
+| `http(s)://www.igraonica-bubblefiesta.rs/...` | `https://igraonica-bubblefiesta.rs/...` |
+| `http(s)://igraonica-bubblefiesta.rs.silvent.rs/...` (cPanel alias) | `https://igraonica-bubblefiesta.rs/...` |
+| `.../stranica.html`, `.../index.html`, `.../stranica/` | `https://igraonica-bubblefiesta.rs/stranica` (takođe jedan skok) |
+
+`/.well-known/` se ne preusmerava, da bi cPanel AutoSSL mogao da obnavlja sertifikate za sve te adrese.
+Na hosting se postavljaju svi fajlovi osim `tools/`, `data/`, `templates/`, `docs/`, `google-apps-script/` i `README.md`
+(ako se i postave, `.htaccess` ih skriva – vraća 404).
+
+Ako se glavna adresa ikad promeni: promeni `baseUrl` u `data/site.json`, adresu u `<head>` dela `index.html` i u `robots.txt`,
+pa sve `igraonica-bubblefiesta.rs` adrese u `.htaccess`, i pokreni `node tools/build.js` (javlja grešku ako negde ostane stara adresa).

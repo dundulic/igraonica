@@ -206,3 +206,22 @@ The logo and share image are no longer placeholders.
 - **Cookies:** checked in a clean browser on every page: 0 cookies, no localStorage/sessionStorage, no third-party requests on load, no analytics. No cookie banner is needed.
 - **Cloudflare Turnstile** is not used on the site, so the policy doesn't name it. Ready-to-paste text for when it's enabled is in `docs/privatnost.md`.
 - **Lighthouse (mobile):** policy page 98 / 100 / 100 / 100; home unchanged at 96 / 100 / 100 / 100.
+
+---
+
+## Update: canonical domain without www (cPanel addon domain on silvent.rs)
+- **Canonical domain** is now `https://igraonica-bubblefiesta.rs` (no www). Changed in `data/site.json` → `baseUrl`, so all generated pages follow; also in the hand-written `<head>` of `index.html` and in `robots.txt`.
+  - This covers canonical tags, Open Graph, Twitter, JSON-LD, `sitemap.xml` and `robots.txt`; the footer text also reads `igraonica-bubblefiesta.rs`.
+  - The generator now fails if any page still contains a `www.` URL, or if a canonical doesn't point to `baseUrl`.
+- **`.htaccess`:**
+  - Any host other than `igraonica-bubblefiesta.rs` (www, the cPanel alias `igraonica-bubblefiesta.rs.silvent.rs`, any letter case), and any plain HTTP request, gets a 301 to `https://igraonica-bubblefiesta.rs` with the same path and query string.
+  - The `.html` → clean URL, `/index.html` → `/` and trailing-slash rules come first and point directly to the final https URL. So **every redirect chain is a single hop**, e.g. `http://www.…/pokretna-igraonica-beograd.html?grad=Beograd` → `https://igraonica-bubblefiesta.rs/pokretna-igraonica-beograd?grad=Beograd`.
+  - The host redirect only runs on the original request, so the internal `404.html` error page is never turned into a 301 to a 200 page.
+  - On a non-canonical host, blocked folders redirect once and then return 404 on the canonical host.
+  - `/.well-known/` is excluded so cPanel AutoSSL can validate certificates for all host names.
+  - Still works behind a proxy/Cloudflare via `X-Forwarded-Proto`.
+- **Tests** (Apache 2.4 with real HTTP on :80 and HTTPS on :443, all three host names, every chain followed to the end):
+  - **72/72 pass**: at most **1 hop** in any chain, no redirect loops, `?grad=Niš` preserved;
+  - 404s stay 404s on every host; the proxy setup works;
+  - in a real browser, `http://www.…/pokretna-igraonica-nis.html` → canonical URL → "Rezerviši" → `/?grad=Niš#rezervacija` with "Niš" filled into the form.
+- **Not covered by `.htaccess`:** a visitor who opens `https://www.…` or `https://…silvent.rs` needs a valid SSL certificate for that name **before** the redirect can happen. In cPanel → SSL/TLS Status, check that AutoSSL covers `igraonica-bubblefiesta.rs`, `www.igraonica-bubblefiesta.rs` and the `.silvent.rs` alias.

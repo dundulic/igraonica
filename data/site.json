@@ -1,6 +1,6 @@
 {
   "_napomena": "Osnovni podaci o firmi. Polja sa vrednošću \"\" ili [] su PLACEHOLDERI – popuni ih pravim podacima pa pokreni: node tools/build.js",
-  "baseUrl": "https://www.igraonica-bubblefiesta.rs",
+  "baseUrl": "https://igraonica-bubblefiesta.rs",
   "name": "Bubble Fiesta",
   "legalName": "",
   "description": "Pokretna igraonica za sve vrste veselja: dvorci na naduvavanje, Bubble House, facepainting, animacija i čuvanje dece, Tiffany sto i stolice. Dolazimo na vašu adresu, u zatvorenom i na otvorenom prostoru.",

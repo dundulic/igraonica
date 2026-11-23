@@ -1,6 +1,8 @@
 # =====================================================================
 #  Bubble Fiesta – podešavanja za Apache (shared hosting)
-#  Kanonska adresa: https://www.igraonica-bubblefiesta.rs/
+#  Kanonska adresa: https://igraonica-bubblefiesta.rs/  (bez www)
+#  Hosting: cPanel addon domen na silvent.rs – isti folder se vidi i kao
+#  igraonica-bubblefiesta.rs.silvent.rs; sve takve adrese se preusmeravaju ovde.
 # =====================================================================
 
 Options -Indexes -MultiViews
@@ -11,36 +13,49 @@ AddDefaultCharset utf-8
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # 1) HTTP -> HTTPS i bez-www -> www (jedan 301 skok)
-  #    (X-Forwarded-Proto za hostinge iza proxy-ja / Cloudflare-a)
-  RewriteCond %{HTTPS} off [OR]
-  RewriteCond %{HTTP_HOST} !^www\. [NC]
-  RewriteCond %{HTTP:X-Forwarded-Proto} !https [OR]
-  RewriteCond %{HTTP_HOST} !^www\. [NC]
-  RewriteRule ^ https://www.igraonica-bubblefiesta.rs%{REQUEST_URI} [L,R=301,NE]
+  # 0) cPanel AutoSSL / Let's Encrypt provera sertifikata – bez preusmeravanja,
+  #    da bi se sertifikat obnavljao i za www i za .silvent.rs adresu
+  RewriteRule ^\.well-known/ - [L]
 
-  # 2) izvorni fajlovi sajta nisu javni (alati, podaci, šabloni, dokumentacija)
-  RewriteRule ^(tools|data|templates|docs|google-apps-script)(/|$) - [R=404,L]
-  RewriteRule ^(README\.md|\.git.*)$ - [R=404,L]
+  # Pravila 2–5 vode DIREKTNO na konačnu adresu (https + glavni domen + čist URL),
+  # pa je uvek samo jedan 301 skok. Query string (npr. ?grad=Niš) se zadržava.
 
-  # 3) /index.html -> /
+  # 2) /index.html -> /
   RewriteCond %{ENV:REDIRECT_STATUS} ^$
   RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
-  RewriteRule ^index\.html$ https://www.igraonica-bubblefiesta.rs/ [L,R=301]
+  RewriteRule ^index\.html$ https://igraonica-bubblefiesta.rs/ [L,R=301]
 
-  # 4) /stranica.html -> /stranica (čisti URL-ovi)
+  # 3) /stranica.html -> /stranica (čisti URL-ovi; samo za stranice koje postoje)
   RewriteCond %{ENV:REDIRECT_STATUS} ^$
   RewriteCond %{THE_REQUEST} \s/+([^\s?]+)\.html[\s?] [NC]
   RewriteCond %1 !^404$
+  RewriteCond %1 !^(tools|data|templates|docs|google-apps-script)/
   RewriteCond %{DOCUMENT_ROOT}/%1.html -f
-  RewriteRule ^ https://www.igraonica-bubblefiesta.rs/%1 [L,R=301,NE]
+  RewriteRule ^ https://igraonica-bubblefiesta.rs/%1 [L,R=301,NE]
 
-  # 5) /stranica/ (kosa crta na kraju) -> /stranica
+  # 4) /stranica/ (kosa crta na kraju) -> /stranica
   RewriteCond %{ENV:REDIRECT_STATUS} ^$
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.+)/$ https://www.igraonica-bubblefiesta.rs/$1 [L,R=301]
+  RewriteRule ^(.+)/$ https://igraonica-bubblefiesta.rs/$1 [L,R=301]
 
-  # 6) /stranica -> interno služi stranica.html
+  # 5) svaki drugi host (www., igraonica-bubblefiesta.rs.silvent.rs, …) ili HTTP
+  #    -> https://igraonica-bubblefiesta.rs + ista putanja i query string
+  #    Uslov: host nije glavni  ILI  (nije HTTPS  I  X-Forwarded-Proto nije https).
+  #    X-Forwarded-Proto: za slučaj da je ispred hostinga proxy/Cloudflare.
+  #    Samo za prvi zahtev (REDIRECT_STATUS prazan) – interni prikaz 404.html se ne preusmerava.
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
+  RewriteCond %{HTTP_HOST} !^igraonica-bubblefiesta\.rs$ [NC,OR]
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP_HOST} !^igraonica-bubblefiesta\.rs$ [NC,OR]
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://igraonica-bubblefiesta.rs%{REQUEST_URI} [L,R=301,NE]
+
+  # 6) izvorni fajlovi sajta nisu javni (alati, podaci, šabloni, dokumentacija)
+  #    (posle pravila 5: drugi host se prvo preusmeri, pa tek onda 404)
+  RewriteRule ^(tools|data|templates|docs|google-apps-script)(/|$) - [R=404,L]
+  RewriteRule ^(README\.md|\.git.*)$ - [R=404,L]
+
+  # 7) /stranica -> interno služi stranica.html
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{DOCUMENT_ROOT}/$1.html -f
@@ -116,7 +131,7 @@ AddDefaultCharset utf-8
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-  # HSTS – uključi tek kada HTTPS radi na www i bez-www adresi:
+  # HSTS – uključi tek kada HTTPS radi na igraonica-bubblefiesta.rs (i na www, zbog includeSubDomains):
   # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
   Header unset ETag
